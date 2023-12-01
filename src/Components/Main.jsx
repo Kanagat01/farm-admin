@@ -1,3 +1,5 @@
+import imagesPath from "../Constants";
+
 function Main() {
     return (
         <div className='page-content-wrapper'>
@@ -6,7 +8,9 @@ function Main() {
                     <div className='row'>
                         <div className='col-12 py-5'>
                             <h4>Dashboard</h4>
-                            <p className='text-gray'>Welcome aboard, Allen Clerk</p>
+                            <p className='text-gray'>
+                                Welcome aboard, Allen Clerk
+                            </p>
                         </div>
                     </div>
                     <div className='row'>
@@ -86,7 +90,10 @@ function Main() {
                                             <div className='split-header'>
                                                 <img
                                                     className='img-ss mt-1 mb-1 mr-2'
-                                                    src='../assets/images/social-icons/instagram.svg'
+                                                    src={
+                                                        imagesPath +
+                                                        "social-icons/instagram.svg"
+                                                    }
                                                     alt='instagram'
                                                 />
                                                 <p className='card-title'>
@@ -260,7 +267,9 @@ function Main() {
                                     </div>
                                     <div className='d-flex align-items-end mt-2'>
                                         <h3>26.00453100</h3>
-                                        <p className='ml-1 font-weight-bold'>BTC</p>
+                                        <p className='ml-1 font-weight-bold'>
+                                            BTC
+                                        </p>
                                     </div>
                                     <div className='d-flex mt-2'>
                                         <div className='wrapper d-flex pr-4'>
@@ -303,15 +312,25 @@ function Main() {
                                         <p className='text-black'>
                                             Received Bitcoin
                                         </p>
-                                        <p className='text-gray'>+0.00005462 BTC</p>
+                                        <p className='text-gray'>
+                                            +0.00005462 BTC
+                                        </p>
                                     </div>
                                     <div className='d-flex justify-content-between border-bottom py-2'>
-                                        <p className='text-black'>Sent Bitcoin</p>
-                                        <p className='text-gray'>-0.00001446 BTC</p>
+                                        <p className='text-black'>
+                                            Sent Bitcoin
+                                        </p>
+                                        <p className='text-gray'>
+                                            -0.00001446 BTC
+                                        </p>
                                     </div>
                                     <div className='d-flex justify-content-between pt-2'>
-                                        <p className='text-black'>Sent Bitcoin</p>
-                                        <p className='text-gray'>-0.00003573 BTC</p>
+                                        <p className='text-black'>
+                                            Sent Bitcoin
+                                        </p>
+                                        <p className='text-gray'>
+                                            -0.00003573 BTC
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -320,7 +339,9 @@ function Main() {
                             <div className='grid widget-revenue-card'>
                                 <div className='grid-body d-flex flex-column h-100'>
                                     <div className='split-header'>
-                                        <p className='card-title'>Server Load</p>
+                                        <p className='card-title'>
+                                            Server Load
+                                        </p>
                                         <div className='content-wrapper v-centered'>
                                             <small className='text-muted'>
                                                 2h ago
@@ -372,7 +393,10 @@ function Main() {
                                     <table className='table table-hover table-sm'>
                                         <thead>
                                             <tr className='solid-header'>
-                                                <th colspan='2' className='pl-4'>
+                                                <th
+                                                    colspan='2'
+                                                    className='pl-4'
+                                                >
                                                     Customer
                                                 </th>
                                                 <th>Order No</th>
@@ -384,7 +408,10 @@ function Main() {
                                                 <td className='pr-0 pl-4'>
                                                     <img
                                                         className='profile-img img-sm'
-                                                        src='../assets/images/profile/male/image_4.png'
+                                                        src={
+                                                            imagesPath +
+                                                            "profile/male/image_4.png"
+                                                        }
                                                         alt='profile img'
                                                     />
                                                 </td>
@@ -406,7 +433,10 @@ function Main() {
                                                 <td className='pr-0 pl-4'>
                                                     <img
                                                         className='profile-img img-sm'
-                                                        src='../assets/images/profile/male/image_3.png'
+                                                        src={
+                                                            imagesPath +
+                                                            "profile/male/image_3.png"
+                                                        }
                                                         alt='profile img'
                                                     />
                                                 </td>
@@ -428,7 +458,10 @@ function Main() {
                                                 <td className='pr-0 pl-4'>
                                                     <img
                                                         className='profile-img img-sm'
-                                                        src='../assets/images/profile/female/image_2.png'
+                                                        src={
+                                                            imagesPath +
+                                                            "profile/female/image_2.png"
+                                                        }
                                                         alt='profile img'
                                                     />
                                                 </td>
@@ -450,7 +483,10 @@ function Main() {
                                                 <td className='pr-0 pl-4'>
                                                     <img
                                                         className='profile-img img-sm'
-                                                        src='../assets/images/profile/male/image_10.png'
+                                                        src={
+                                                            imagesPath +
+                                                            "profile/male/image_10.png"
+                                                        }
                                                         alt='profile img'
                                                     />
                                                 </td>
@@ -486,7 +522,9 @@ function Main() {
                             <div className='grid'>
                                 <div className='grid-body'>
                                     <div className='split-header'>
-                                        <p className='card-title'>Activity Log</p>
+                                        <p className='card-title'>
+                                            Activity Log
+                                        </p>
                                         <div className='btn-group'>
                                             <button
                                                 type='button'
@@ -539,28 +577,40 @@ function Main() {
                                                     <div className='grouped-images mt-2'>
                                                         <img
                                                             className='img-sm'
-                                                            src='../assets/images/profile/male/image_4.png'
+                                                            src={
+                                                                imagesPath +
+                                                                "profile/male/image_4.png"
+                                                            }
                                                             alt='Profile Img'
                                                             data-toggle='tooltip'
                                                             title='Gerald Pierce'
                                                         />
                                                         <img
                                                             className='img-sm'
-                                                            src='../assets/images/profile/male/image_5.png'
+                                                            src={
+                                                                imagesPath +
+                                                                "profile/male/image_5.png"
+                                                            }
                                                             alt='Profile Img'
                                                             data-toggle='tooltip'
                                                             title='Edward Wilson'
                                                         />
                                                         <img
                                                             className='img-sm'
-                                                            src='../assets/images/profile/female/image_6.png'
+                                                            src={
+                                                                imagesPath +
+                                                                "profile/female/image_6.png"
+                                                            }
                                                             alt='Profile Img'
                                                             data-toggle='tooltip'
                                                             title='Billy Williams'
                                                         />
                                                         <img
                                                             className='img-sm'
-                                                            src='../assets/images/profile/male/image_6.png'
+                                                            src={
+                                                                imagesPath +
+                                                                "profile/male/image_6.png"
+                                                            }
                                                             alt='Profile Img'
                                                             data-toggle='tooltip'
                                                             title='Lelia Hampton'

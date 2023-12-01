@@ -1,3 +1,5 @@
+import imagesPath from "../Constants";
+
 function Sidebar() {
     return (
         <div className='sidebar'>
@@ -5,7 +7,7 @@ function Sidebar() {
                 <div className='display-avatar animated-avatar'>
                     <img
                         className='profile-img img-lg rounded-circle'
-                        src='../assets/images/profile/male/image_1.png'
+                        src={imagesPath + "profile/male/image_1.png"}
                         alt='profile img'
                     />
                 </div>

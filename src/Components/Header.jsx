@@ -1,17 +1,19 @@
-import mdi_styles from "../assets/vendors/iconfonts/mdi/css/materialdesignicons.css";
-import style from "../assets/css/demo_1/style.css";
+import "../assets/vendors/iconfonts/mdi/css/materialdesignicons.css";
 import logo from "../assets/images/logo.svg";
-import logo_mini from "../assets/images/logo_mini.svg";
 
 function Header() {
     return (
         <nav className='t-header'>
             <div className='t-header-brand-wrapper'>
                 <a href='#'>
-                    <img className='logo' src={logo} alt='logo' />
+                    <img
+                        className='logo'
+                        src={logo}
+                        alt='logo'
+                    />
                     <img
                         className='logo-mini'
-                        src={logo_mini}
+                        src={imagesPath + "logo_mini.svg"}
                         alt='logo-mini'
                     />
                 </a>
