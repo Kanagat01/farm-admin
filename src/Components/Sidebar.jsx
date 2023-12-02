@@ -1,18 +1,38 @@
-import imagesPath from "../Constants";
+import React, { useState } from "react";
+import logo from "../assets/images/logo.svg";
+import maleAvatar from "../assets/images/profile/male/image_2.png"
 
 function Sidebar() {
+    const [showModal, setShowModal] = useState(false);
+
+    const openModal = () => {
+        setShowModal(true);
+      };
+      
+    const closeModal = () => {
+        setShowModal(false);
+      };
+
+    const handleModalClick = (e) => {
+        if (e.target.className === 'modal') {
+            setShowModal(false);
+        }
+    };
+
+
     return (
         <div className='sidebar'>
             <div className='user-profile'>
                 <div className='display-avatar animated-avatar'>
                     <img
                         className='profile-img img-lg rounded-circle'
-                        src={imagesPath + "profile/male/image_1.png"}
+                        src={maleAvatar}
                         alt='profile img'
                     />
                 </div>
                 <div className='info-wrapper'>
                     <p className='user-name'>Allen Clerk</p>
+                    <p className="admin-access" style={{fontWeight: 700}}>ADMIN</p>
                     <h6 className='display-income'>$3,400,00</h6>
                 </div>
             </div>
@@ -24,6 +44,22 @@ function Sidebar() {
                         <i className='mdi mdi-gauge link-icon'></i>
                     </a>
                 </li>
+                <li onClick={openModal}>
+                    <a href='index.html'>
+                        <span className='link-title'>Users</span>
+                        <i className='mdi mdi-account link-icon'></i>
+                    </a>
+                </li>
+                {showModal && (
+                <div className="modal" onClick={handleModalClick}>
+                    <div className="modal-content">
+                        <span className="close" onClick={closeModal}>
+                            &times;
+                        </span>
+                        <p>Содержимое модального окна здесь...</p>
+                    </div>
+                </div>
+                )}
                 <li>
                     <a
                         href='#sample-pages'
