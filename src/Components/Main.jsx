@@ -1,4 +1,4 @@
-import imagesPath from "../Constants";
+import logo from "../assets/images/logo.svg";
 
 function Main() {
     return (
@@ -91,8 +91,7 @@ function Main() {
                                                 <img
                                                     className='img-ss mt-1 mb-1 mr-2'
                                                     src={
-                                                        imagesPath +
-                                                        "social-icons/instagram.svg"
+                                                        logo
                                                     }
                                                     alt='instagram'
                                                 />
@@ -409,8 +408,7 @@ function Main() {
                                                     <img
                                                         className='profile-img img-sm'
                                                         src={
-                                                            imagesPath +
-                                                            "profile/male/image_4.png"
+                                                            logo
                                                         }
                                                         alt='profile img'
                                                     />
@@ -434,8 +432,7 @@ function Main() {
                                                     <img
                                                         className='profile-img img-sm'
                                                         src={
-                                                            imagesPath +
-                                                            "profile/male/image_3.png"
+                                                            logo
                                                         }
                                                         alt='profile img'
                                                     />
@@ -459,8 +456,7 @@ function Main() {
                                                     <img
                                                         className='profile-img img-sm'
                                                         src={
-                                                            imagesPath +
-                                                            "profile/female/image_2.png"
+                                                            logo
                                                         }
                                                         alt='profile img'
                                                     />
@@ -484,8 +480,7 @@ function Main() {
                                                     <img
                                                         className='profile-img img-sm'
                                                         src={
-                                                            imagesPath +
-                                                            "profile/male/image_10.png"
+                                                            logo
                                                         }
                                                         alt='profile img'
                                                     />
@@ -509,7 +504,7 @@ function Main() {
                                 </div>
                                 <a
                                     className='border-top px-3 py-2 d-block text-gray'
-                                    href='#'
+                                    href='!#'
                                 >
                                     <small className='font-weight-medium'>
                                         <i className='mdi mdi-chevron-down mr-2'></i>
@@ -538,13 +533,13 @@ function Main() {
                                             <div className='dropdown-menu dropdown-menu-right'>
                                                 <a
                                                     className='dropdown-item'
-                                                    href='#'
+                                                    href='!#'
                                                 >
                                                     Expand View
                                                 </a>
                                                 <a
                                                     className='dropdown-item'
-                                                    href='#'
+                                                    href='!#'
                                                 >
                                                     Edit
                                                 </a>
@@ -578,8 +573,7 @@ function Main() {
                                                         <img
                                                             className='img-sm'
                                                             src={
-                                                                imagesPath +
-                                                                "profile/male/image_4.png"
+                                                                logo
                                                             }
                                                             alt='Profile Img'
                                                             data-toggle='tooltip'
@@ -588,8 +582,7 @@ function Main() {
                                                         <img
                                                             className='img-sm'
                                                             src={
-                                                                imagesPath +
-                                                                "profile/male/image_5.png"
+                                                                logo
                                                             }
                                                             alt='Profile Img'
                                                             data-toggle='tooltip'
@@ -598,8 +591,7 @@ function Main() {
                                                         <img
                                                             className='img-sm'
                                                             src={
-                                                                imagesPath +
-                                                                "profile/female/image_6.png"
+                                                                logo
                                                             }
                                                             alt='Profile Img'
                                                             data-toggle='tooltip'
@@ -608,8 +600,7 @@ function Main() {
                                                         <img
                                                             className='img-sm'
                                                             src={
-                                                                imagesPath +
-                                                                "profile/male/image_6.png"
+                                                                logo
                                                             }
                                                             alt='Profile Img'
                                                             data-toggle='tooltip'
@@ -678,7 +669,7 @@ function Main() {
                                 </div>
                                 <a
                                     className='border-top px-3 py-2 d-block text-gray'
-                                    href='#'
+                                    href='!#'
                                 >
                                     <small className='font-weight-medium'>
                                         <i className='mdi mdi-chevron-down mr-2'></i>{" "}

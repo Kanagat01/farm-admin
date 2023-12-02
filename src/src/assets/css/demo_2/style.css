@@ -8045,6 +8045,7 @@ textarea {
           width: 25px; } }
   .t-header .t-header-content-wrapper {
     display: flex;
+    text-align: right;
     align-items: center;
     flex-direction: row;
     width: 100%;

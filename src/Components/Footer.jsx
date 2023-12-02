@@ -5,10 +5,10 @@ function Footer() {
                 <div className='col-sm-6 text-center text-sm-right order-sm-1'>
                     <ul className='text-gray'>
                         <li>
-                            <a href='#'>Terms of use</a>
+                            <a href='!#'>Terms of use</a>
                         </li>
                         <li>
-                            <a href='#'>Privacy Policy</a>
+                            <a href='!#'>Privacy Policy</a>
                         </li>
                     </ul>
                 </div>
