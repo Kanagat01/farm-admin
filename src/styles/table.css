@@ -1,0 +1,29 @@
+.table th {
+    font-size: 14px;
+    font-weight: 500;
+}
+.table-title {
+    color: rgb(0, 0, 0, 0.8);
+    font-size: 24px;
+    font-weight: 700;
+}
+.table td,
+.table-link {
+    color: #565656;
+    font-size: 14px;
+}
+.badge {
+    display: inline-block;
+    padding: 0.45rem 1rem;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    border-radius: 0.25rem;
+    color: #fff;
+}
+.badge.badge-premium {
+    background-color: #6610f2;
+}
+.badge.badge-standart {
+    background-color: #4cceac;
+}
