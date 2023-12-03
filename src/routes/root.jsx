@@ -7,8 +7,10 @@ export default function Root() {
     return (
         <div className='app'>
             <Header />
-            <Sidebar />
-            <Outlet />
+            <div className='d-flex'>
+                <Sidebar />
+                <Outlet />
+            </div>
             <Footer />
         </div>
     );
