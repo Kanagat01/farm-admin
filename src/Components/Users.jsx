@@ -1,5 +1,3 @@
-function Main() {
+export default function UsersList() {
     return <div className='main'></div>;
 }
-
-export default Main;
