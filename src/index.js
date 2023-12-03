@@ -7,7 +7,6 @@ import {
 import Root from "./routes/root";
 import Users_List from './Components/Users';
 import Login from './Components/Login';
-import UserCreate from './Components/UserCreate.jsx';
 
 const router = createBrowserRouter([
   {
@@ -18,10 +17,6 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <Users_List />,
-      },
-      {
-        path: "/users/add",
-        element: <UserCreate />
       }
     ]
   },
