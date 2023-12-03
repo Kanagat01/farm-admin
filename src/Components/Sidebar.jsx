@@ -11,7 +11,7 @@ function Sidebar() {
             >
                 <svg className="bi pe-none me-2" width={40} height={32}>
                 <use xlinkHref="#bootstrap" />
-                </svg>
+                </svg>  
                 <span className="fs-4">Allen Clerk</span>
             </a>
             <h6 className="mx-5 p-2">$3,400,00</h6>
