@@ -5,7 +5,7 @@ import {
   RouterProvider
 } from "react-router-dom";
 import Root from "./routes/root";
-import Users_List from './Components/Users';
+import UsersList from './Components/Users';
 import Login from './Components/Login';
 import UserManagment from './Components/UserManagement';
 
@@ -16,10 +16,9 @@ const router = createBrowserRouter([
     errorElement: <h1>Some Error</h1>,
     children: [
       {
-        path: "",
-        element: <Users_List />,
-      },
-      
+        path: "users",
+        element: <UsersList />,
+      }
     ]
   },
   {
