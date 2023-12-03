@@ -1,0 +1,13 @@
+.header {
+    background: linear-gradient(109.6deg, #141e30 11.2%, #243b55 91.1%);
+    color: #fff;
+}
+.header-title {
+    font-size: 24px;
+    font-weight: 500;
+}
+.greeting,
+.logout-btn {
+    font-size: 18px;
+    color: #fff;
+}
