@@ -1,16 +1,16 @@
 import React from "react"
 import { Button, Container} from "react-bootstrap"
 import { NavLink } from "react-router-dom";
-import { BAN_ROUTE, CREATE_ROUTE, EDIT_ROUTE } from "../utils/consts";
+import { BAN_ROUTE, EDIT_ROUTE, CREATE_ROUTE } from "../../utils/consts";
 
-const UserManagment = () => {
+const EditUser = () => {
     return (
         <Container >
-        <div className="addUser">
+        <div className="banUser">
             <form className="row g-3 needs-validation p-3" noValidate="">
                 <h3>Управление пользователями</h3>
                 <div className="d-flex">
-                <NavLink to={CREATE_ROUTE} className="btn btn-outline-success m-1 active">
+                <NavLink to={CREATE_ROUTE} className="btn btn-outline-success m-1" activeClassName="active">
                     Создать
                 </NavLink>
                 <NavLink to={BAN_ROUTE} className="btn btn-outline-danger m-1"  activeClassName="active">
@@ -20,6 +20,21 @@ const UserManagment = () => {
                     Редактировать
                 </NavLink>
                 </div>
+                <form className="d-flex" role="search">
+                    <div >
+                        <small>Искать пользователя по нику...</small>
+                    </div>
+                    <input
+                        className="form-control me-2"
+                        type="search"
+                        placeholder="@someone..."
+                        aria-label="Search"
+                    />
+                    <button className="btn btn-outline-success" type="submit">
+                        Искать
+                    </button>
+                </form>
+                <hr/>
                 <div className="col-md-4">
                     <label htmlFor="validationCustom01" className="form-label">
                     Имя
@@ -28,6 +43,7 @@ const UserManagment = () => {
                     type="text"
                     className="form-control border"
                     id="validationCustom01"
+                    // defaultValue="Иван"
                     required=""
                     
                     />
@@ -42,6 +58,7 @@ const UserManagment = () => {
                     type="text"
                     className="form-control border"
                     id="validationCustom02"
+                    // defaultValue="Петров"
                     required=""
                     />
                     <div className="valid-feedback">Все хорошо!</div>
@@ -120,14 +137,14 @@ const UserManagment = () => {
                         required=""
                     />
                     <label className="form-check-label" htmlFor="invalidCheck">
-                        Примите условия и соглашения
+                        Вы уверены?
                     </label>
                     <div className="invalid-feedback">Вы должны принять перед отправкой.</div>
                     </div>
                 </div>
                 <div className="col-12">
-                    <Button variant="outline-success">
-                    Создать
+                    <Button variant="outline-secondary">
+                        Редактировать
                     </Button>
                 </div>
             </form>
@@ -135,4 +152,4 @@ const UserManagment = () => {
         </Container>
 )}
 
-export default UserManagment
+export default EditUser

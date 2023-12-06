@@ -8,6 +8,8 @@ import Root from "./routes/root";
 import UsersList from './Components/Users';
 import Login from './Components/Login';
 import UserManagment from './Components/UserManagement';
+import BanUser from './Components/UserManagment/BanUser';
+import EditUser from './Components/UserManagment/EditUser';
 
 const router = createBrowserRouter([
   {
@@ -26,8 +28,16 @@ const router = createBrowserRouter([
     element: <Login />
   },
   {
-    path: "user/managment",
+    path: "userManagment",
     element: <UserManagment />
+  },
+  {
+    path: "/ban",
+    element: <BanUser />
+  },
+  {
+    path: "/edit",
+    element: <EditUser />
   },
 ]);
 
