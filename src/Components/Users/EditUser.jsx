@@ -2,6 +2,8 @@ import React from "react";
 import { Button, Container } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { BAN_ROUTE, EDIT_ROUTE } from "../../utils/consts";
+import Icon from '@mdi/react';
+import { mdiLeadPencil } from '@mdi/js';
 
 const EditUser = () => {
     return (
@@ -11,38 +13,13 @@ const EditUser = () => {
                     <h3>Управление пользователями</h3>
                     <div className='d-flex'>
                         <NavLink
-                            to={BAN_ROUTE}
-                            className='btn btn-outline-danger m-1'
-                            activeClassName='active'
-                        >
-                            Забанить
-                        </NavLink>
-                        <NavLink
                             to={EDIT_ROUTE}
-                            className='btn btn-outline-secondary m-1'
+                            className='m-1'
                             activeClassName='active'
                         >
-                            Редактировать
+                        <Icon path={mdiLeadPencil} size={1} className="text-secondary border border-3 rounded" /> 
                         </NavLink>
                     </div>
-                    <form className='d-flex' role='search'>
-                        <div>
-                            <small>Искать пользователя по нику...</small>
-                        </div>
-                        <input
-                            className='form-control me-2'
-                            type='search'
-                            placeholder='@someone...'
-                            aria-label='Search'
-                        />
-                        <button
-                            className='btn btn-outline-success'
-                            type='submit'
-                        >
-                            Искать
-                        </button>
-                    </form>
-                    <hr />
                     <div className='col-md-4'>
                         <label
                             htmlFor='validationCustom01'
@@ -51,10 +28,10 @@ const EditUser = () => {
                             Имя
                         </label>
                         <input
+                        placeholder="Введите ваше имя"
                             type='text'
                             className='form-control border'
                             id='validationCustom01'
-                            // defaultValue="Иван"
                             required=''
                         />
                         <div className='valid-feedback'>Все хорошо!</div>
@@ -68,10 +45,10 @@ const EditUser = () => {
                             Фамилия
                         </label>
                         <input
+                            placeholder="Введите вашу фамилию"
                             type='text'
                             className='form-control border'
                             id='validationCustom02'
-                            // defaultValue="Петров"
                             required=''
                         />
                         <div className='valid-feedback'>Все хорошо!</div>
@@ -92,6 +69,7 @@ const EditUser = () => {
                                 @
                             </span>
                             <input
+                                placeholder="Введите ваше имя пользователя"
                                 type='text'
                                 className='form-control border'
                                 id='validationCustomUsername'
@@ -112,6 +90,7 @@ const EditUser = () => {
                             Город
                         </label>
                         <input
+                            placeholder="Введите ваш город"
                             type='text'
                             className='form-control border'
                             id='validationCustom03'
@@ -152,6 +131,7 @@ const EditUser = () => {
                             Индекс
                         </label>
                         <input
+                            placeholder="Введите уникальный индекс"
                             type='text'
                             className='form-control border'
                             id='validationCustom05'
@@ -183,9 +163,9 @@ const EditUser = () => {
                         </div>
                     </div>
                     <div className='col-12'>
-                        <Button variant='outline-secondary'>
-                            Редактировать
-                        </Button>
+                    <Button className="btn btn-primary m-1">
+                        Редактировать
+                    </Button>
                     </div>
                 </form>
             </div>

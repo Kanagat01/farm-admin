@@ -25,23 +25,6 @@ const BanUser = () => {
                             Редактировать
                         </NavLink>
                     </div>
-                    <form className='d-flex' role='search'>
-                        <div>
-                            <small>Искать пользователя по нику...</small>
-                        </div>
-                        <input
-                            className='form-control me-2'
-                            type='search'
-                            placeholder='@someone...'
-                            aria-label='Search'
-                        />
-                        <button
-                            className='btn btn-outline-success'
-                            type='submit'
-                        >
-                            Искать
-                        </button>
-                    </form>
                     <hr />
                     <div className='col-md-4'>
                         <label
@@ -54,7 +37,6 @@ const BanUser = () => {
                             type='text'
                             className='form-control border'
                             id='validationCustom01'
-                            // defaultValue="Иван"
                             required=''
                         />
                         <div className='valid-feedback'>Все хорошо!</div>
@@ -71,7 +53,6 @@ const BanUser = () => {
                             type='text'
                             className='form-control border'
                             id='validationCustom02'
-                            // defaultValue="Петров"
                             required=''
                         />
                         <div className='valid-feedback'>Все хорошо!</div>
