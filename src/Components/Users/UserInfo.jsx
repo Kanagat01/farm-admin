@@ -2,8 +2,18 @@ import React from "react";
 import { Button, Container } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { BAN_ROUTE, EDIT_ROUTE } from "../../utils/consts";
+import { useState } from 'react';
+import Modal from 'react-bootstrap/Modal';
+import Icon from '@mdi/react';
+import { mdiLeadPencil } from '@mdi/js';
 
 export default function UserInfo() {
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+
     return (
         <Container>
             <div className='addUser'>
@@ -11,18 +21,11 @@ export default function UserInfo() {
                     <h3>Управление пользователями</h3>
                     <div className='d-flex'>
                         <NavLink
-                            to={BAN_ROUTE}
-                            className='btn btn-outline-danger m-1'
-                            activeClassName='active'
-                        >
-                            Забанить
-                        </NavLink>
-                        <NavLink
                             to={EDIT_ROUTE}
-                            className='btn btn-outline-secondary m-1'
+                            className='m-1'
                             activeClassName='active'
                         >
-                            Редактировать
+                        <Icon path={mdiLeadPencil} size={1} className="text-secondary" /> 
                         </NavLink>
                     </div>
                     <div className='col-md-4'>
@@ -33,6 +36,7 @@ export default function UserInfo() {
                             Имя
                         </label>
                         <input
+                            placeholder="Введите ваше имя"
                             type='text'
                             className='form-control border'
                             id='validationCustom01'
@@ -49,6 +53,7 @@ export default function UserInfo() {
                             Фамилия
                         </label>
                         <input
+                            placeholder="Введите вашу фамилию"
                             type='text'
                             className='form-control border'
                             id='validationCustom02'
@@ -72,6 +77,7 @@ export default function UserInfo() {
                                 @
                             </span>
                             <input
+                            placeholder="Введите имя пользователя"
                                 type='text'
                                 className='form-control border'
                                 id='validationCustomUsername'
@@ -92,6 +98,7 @@ export default function UserInfo() {
                             Город
                         </label>
                         <input
+                            placeholder="Введите название вашего города"
                             type='text'
                             className='form-control border'
                             id='validationCustom03'
@@ -132,6 +139,7 @@ export default function UserInfo() {
                             Индекс
                         </label>
                         <input
+                            placeholder="Введите уникальный индекс"
                             type='text'
                             className='form-control border'
                             id='validationCustom05'
@@ -163,7 +171,17 @@ export default function UserInfo() {
                         </div>
                     </div>
                     <div className='col-12'>
-                        <Button variant='outline-success'>Создать</Button>
+                        <Button className="btn btn-primary m-1">Создать</Button>
+                        <Button className="btn btn-primary m-1" onClick={handleShow}>Забанить</Button>
+                        <Modal show={show} onHide={handleClose}>
+                            <Modal.Header closeButton />
+                            <Modal.Body>Вы уверены что хотите забанить данного пользователя?</Modal.Body>
+                            <Modal.Footer>
+                            <Button className="btn btn-primary" onClick={handleClose}>
+                                Забанить
+                            </Button>
+                            </Modal.Footer>
+                        </Modal>
                     </div>
                 </form>
             </div>
