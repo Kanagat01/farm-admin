@@ -31,6 +31,11 @@ function Sidebar() {
                 </li>
                 <li>
                     <a href='#' class='sidebar-link'>
+                        Управление пользователями
+                    </a>
+                </li>
+                <li>
+                    <a href='#' class='sidebar-link'>
                         Обсуждения
                     </a>
                 </li>
