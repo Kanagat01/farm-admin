@@ -11,12 +11,17 @@ import UserInfo from './Components/Users/UserInfo';
 import BanUser from './Components/Users/BanUser';
 import EditUser from './Components/Users/EditUser';
 import * as Routes from './utils/consts';
+import Dashboard from './Components/Dashboard';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
     children: [
+      {
+        path: Routes.DASHBOARD_ROUTE,
+        element: <Dashboard />
+      },
       {
         path: Routes.LOGIN_ROUTE,
         element: <Login />
