@@ -1,7 +1,12 @@
+:root {
+    --primary: #696ffb;
+    --outline-info: #857bff;
+    --outline-danger: #db504a;
+}
 .main {
     background: #fbfcfd;
     flex: 1;
-    padding: 20px;
+    padding: 20px 40px;
 }
 .footer {
     background-color: #fbfcfd;
@@ -28,4 +33,59 @@
     height: 100%;
     border-radius: 50px !important;
     padding: 0 7px;
+}
+.title-md {
+    opacity: 0.9;
+    margin-bottom: 25px;
+    font-size: 18px;
+}
+.btn-primary {
+    color: #fff;
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+.btn-outline-info {
+    --bs-btn-color: var(--outline-info);
+    --bs-btn-border-color: var(--outline-info);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--outline-info);
+    --bs-btn-hover-border-color: var(--outline-info);
+    --bs-btn-focus-shadow-rgb: none;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--outline-info);
+    --bs-btn-active-border-color: var(--outline-info);
+    --bs-btn-active-shadow: none;
+    --bs-btn-disabled-color: var(--outline-info);
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: var(--outline-info);
+    --bs-gradient: none;
+    --bs-border-width: 2px;
+}
+.btn-group label.btn input {
+    display: none;
+}
+input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+}
+.btn-without-bg {
+    background: none;
+    border: none;
+}
+.btn-outline-danger {
+    --bs-btn-color: var(--outline-danger);
+    --bs-btn-border-color: var(--outline-danger);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--outline-danger);
+    --bs-btn-hover-border-color: var(--outline-danger);
+    --bs-btn-focus-shadow-rgb: none;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--outline-danger);
+    --bs-btn-active-border-color: var(--outline-danger);
+    --bs-btn-active-shadow: none;
+    --bs-btn-disabled-color: var(--outline-danger);
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: var(--outline-danger);
+    --bs-gradient: none;
+    --bs-border-width: 2px;
 }

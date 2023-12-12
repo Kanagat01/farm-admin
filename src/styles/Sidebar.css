@@ -12,19 +12,25 @@
     padding: 0;
 }
 .sidebar-link {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
     margin-bottom: 10px;
     font-size: 18px;
     color: #525c5d;
     letter-spacing: 0.03rem;
     font-weight: 500;
     text-decoration: none;
+}
+.sidebar-link span {
     transition: transform 0.3s ease;
 }
-.sidebar-link.active,
-.sidebar-link:hover {
+.sidebar-link.active {
     color: #4cceac;
 }
-.sidebar-link:hover {
+.sidebar-link:hover svg {
+    color: #4cceac;
+}
+.sidebar-link:hover span {
     transform: translateX(10px);
 }

@@ -2,10 +2,7 @@ import "../styles/Login.css";
 
 export default function Login() {
     return (
-        <div
-            className='d-flex flex-column align-items-center'
-            style={{ height: "100vh" }}
-        >
+        <div className='main d-flex flex-column align-items-center'>
             <h1 className='title my-5'>Администрация фермы</h1>
             <div className='row login-form-container'>
                 <div className='col-lg-5 col-md-7 col-sm-9 col-11 mx-auto'>
