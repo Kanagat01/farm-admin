@@ -77,3 +77,61 @@ export function getUser(user_id) {
         }
     }
 }
+
+export function getPosts(){
+    const posts = [
+        {
+            id: 1,
+            name: "Название поста №1",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus risus, finibus ornare vestibulum et, feugiat quis dui. Vivamus sit amet dolor et magna facilisis rhoncus. Curabitur maximus est sed porta scelerisque. Sed suscipit, arcu volutpat feugiat posuere, eros nisi tristique nibh, mollis vehicula lectus tortor eu purus. ",
+            likes: 15,
+            comments: 56,
+            time_of_publication: "date.now",
+            reposts: 89,
+            views: 800
+        },
+        {
+            id: 2,
+            name: "Название поста №2",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus risus, finibus ornare vestibulum et, feugiat quis dui. Vivamus sit amet dolor et magna facilisis rhoncus. Curabitur maximus est sed porta scelerisque. Sed suscipit, arcu volutpat feugiat posuere, eros nisi tristique nibh, mollis vehicula lectus tortor eu purus. ",
+            likes: 15,
+            comments: 56,
+            time_of_publication: "date.now",
+            reposts: 89,
+            views: 800
+        },
+        {
+            id: 3,
+            name: "Название поста №3",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus risus, finibus ornare vestibulum et, feugiat quis dui. Vivamus sit amet dolor et magna facilisis rhoncus. Curabitur maximus est sed porta scelerisque. Sed suscipit, arcu volutpat feugiat posuere, eros nisi tristique nibh, mollis vehicula lectus tortor eu purus. ",
+            likes: 15,
+            comments: 56,
+            time_of_publication: "date.now",
+            reposts: 89,
+            views: 800
+        },
+        {
+            id: 4,
+            name: "Название поста №4",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus risus, finibus ornare vestibulum et, feugiat quis dui. Vivamus sit amet dolor et magna facilisis rhoncus. Curabitur maximus est sed porta scelerisque. Sed suscipit, arcu volutpat feugiat posuere, eros nisi tristique nibh, mollis vehicula lectus tortor eu purus. ",
+            likes: 15,
+            comments: 56,
+            time_of_publication: "date.now",
+            reposts: 89,
+            views: 800
+        }
+    ]
+    return posts;
+}
+
+export function getPost(post_id) {
+    const posts = getPosts();
+    for (const post of posts) {
+        if (post.id === post_id) {
+            return post;
+        }
+        else {
+            return post;
+        }
+    }
+}
