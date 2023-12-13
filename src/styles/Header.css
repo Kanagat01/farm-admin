@@ -1,13 +1,13 @@
 .header {
-    background: linear-gradient(109.6deg, #141e30 11.2%, #243b55 91.1%);
+    background: var(--header-gradient);
     color: #fff;
 }
 .header-title {
-    font-size: 24px;
+    font-size: 2.4rem;
     font-weight: 500;
 }
 .greeting,
 .logout-btn {
-    font-size: 18px;
+    font-size: 1.8rem;
     color: #fff;
 }

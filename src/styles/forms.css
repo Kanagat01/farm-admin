@@ -1,0 +1,67 @@
+.form-control {
+    width: 100%;
+    padding: 0.6rem 2rem;
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--form-control-color);
+    background-color: var(--form-control-bg);
+    background-clip: padding-box;
+    border: 1px solid var(--form-control-border-color);
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.form-control:focus {
+    box-shadow: none;
+}
+.form-control::placeholder {
+    color: var(--black-op4);
+}
+.form-group,
+.form-inline {
+    margin-bottom: 2rem;
+}
+.form-group.input-rounded .form-control {
+    border-radius: 25px;
+}
+.input-group .form-control,
+.input-group .form-control:focus {
+    border: none;
+    background: transparent;
+    font-size: 1.4rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+}
+.form-group label {
+    font-size: 1.4rem;
+}
+.radio-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+.custom-radio-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.custom-radio-inputs label {
+    cursor: pointer;
+}
+.custom-radio-inputs input[type="radio"] {
+    display: none;
+}
+.custom-radio-inputs span {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    border: 1px solid var(--outline-info);
+    color: var(--light-gray);
+    font-size: 1.4rem;
+}
+.custom-radio-inputs input[type="radio"]:checked + span {
+    background: var(--outline-info);
+}
+textarea.custom-input {
+    height: 6rem;
+}

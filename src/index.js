@@ -8,8 +8,6 @@ import Root from "./routes/root";
 import UsersList from './Components/Users/Users';
 import Login from './Components/Login';
 import UserInfo from './Components/Users/UserInfo';
-import BanUser from './Components/Users/BanUser';
-import EditUser from './Components/Users/EditUser';
 import * as Routes from './utils/consts';
 import Dashboard from './Components/Dashboard';
 
@@ -33,14 +31,6 @@ const router = createBrowserRouter([
       {
         path: Routes.USER_ROUTE,
         element: <UserInfo />
-      },
-      {
-        path: Routes.BAN_ROUTE,
-        element: <BanUser />
-      },
-      {
-        path: Routes.EDIT_ROUTE,
-        element: <EditUser />
       }
     ]
   }

@@ -1,6 +1,3 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/Header.css";
-
 function Header() {
     let username = "Kana";
     return (

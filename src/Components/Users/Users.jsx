@@ -5,47 +5,31 @@ import Icon from "@mdi/react";
 import { mdiArrowRightThick, mdiFilter, mdiBlockHelper } from "@mdi/js";
 
 import { USER_ROUTE } from "../../utils/consts";
-
-import "../../styles/table.css";
+import { getUsers } from "../../utils/api_connection";
 
 export default function UsersList() {
     const columns = ["ID", "Имя", "Никнейм", "Тип подписки", ""];
-    const users = [
-        {
-            id: 1,
-            name: "Иван Иванов",
-            username: "Ivan01",
-            subscription_type: "Стандарт",
-        },
-        {
-            id: 2,
-            name: "Петр Петров",
-            username: "Peter02",
-            subscription_type: "Премиум",
-        },
-        {
-            id: 3,
-            name: "Мария Сидорова",
-            username: "Maria03",
-            subscription_type: "Стандарт",
-        },
-        {
-            id: 4,
-            name: "Анна Кузнецова",
-            username: "Anna04",
-            subscription_type: "Премиум",
-        },
-        {
-            id: 5,
-            name: "Алексей Николаев",
-            username: "Alex05",
-            subscription_type: "Стандарт",
-        },
-    ];
+    const users = getUsers();
     const [showFilterModal, setShowFilterModal] = useState(false);
 
     const handleFilterModalClose = () => setShowFilterModal(false);
     const handleFilterModalShow = () => setShowFilterModal(true);
+
+    const [showBlockModal, setshowBlockModal] = useState({});
+
+    const handleCloseBlockModal = (userId) => {
+        setshowBlockModal((prevState) => ({
+            ...prevState,
+            [userId]: false,
+        }));
+    };
+
+    const handleShowBlockModal = (userId) => {
+        setshowBlockModal((prevState) => ({
+            ...prevState,
+            [userId]: true,
+        }));
+    };
 
     return (
         <div className='main'>
@@ -66,16 +50,19 @@ export default function UsersList() {
                             class='btn btn-primary rounded-btn d-inline-flex align-items-center justify-content-center'
                             type='submit'
                         >
-                            <Icon path={mdiArrowRightThick} size={0.8} />
+                            <Icon path={mdiArrowRightThick} size={1} />
                         </button>
                     </div>
                 </form>
                 <>
                     <Button
-                        className='btn btn-primary rounded-btn py-1 ms-5'
+                        className='btn btn-primary rounded-btn py-2 ms-5'
                         onClick={handleFilterModalShow}
                     >
-                        <Icon path={mdiFilter} size={0.8} />
+                        <Icon
+                            path={mdiFilter}
+                            style={{ height: "1.5rem", width: "1.5rem" }}
+                        />
                     </Button>
 
                     <Modal
@@ -86,32 +73,28 @@ export default function UsersList() {
                             <Modal.Title>Фильтр</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <h2 className='title-md'>По типу подписки</h2>
-                            <div class='btn-group mb-0'>
-                                <label
-                                    htmlFor='standart'
-                                    class='btn btn-outline-info'
-                                >
-                                    <input
-                                        type='radio'
-                                        name='subscription_type'
-                                        id='standart'
-                                        value='standart'
-                                    />
-                                    Стандарт
-                                </label>
-                                <label
-                                    htmlFor='premium'
-                                    class='btn btn-outline-info'
-                                >
-                                    <input
-                                        type='radio'
-                                        name='subscription_type'
-                                        id='premium'
-                                        value='premium'
-                                    />
-                                    Премиум
-                                </label>
+                            <div className='d-flex align-items-center'>
+                                <h2 className='title-md my-0'>
+                                    По типу подписки
+                                </h2>
+                                <div class='custom-radio-inputs ms-3'>
+                                    <label>
+                                        <input
+                                            type='radio'
+                                            name='subscription_type'
+                                            value='standart'
+                                        />
+                                        <span>Стандарт</span>
+                                    </label>
+                                    <label>
+                                        <input
+                                            type='radio'
+                                            name='subscription_type'
+                                            value='premium'
+                                        />
+                                        <span>Премиум</span>
+                                    </label>
+                                </div>
                             </div>
                         </Modal.Body>
                         <Modal.Footer>
@@ -167,15 +150,25 @@ export default function UsersList() {
                             </td>
                             <td>
                                 <>
-                                    <button className='btn-without-bg'>
+                                    <button
+                                        className='btn-without-bg'
+                                        onClick={() =>
+                                            handleShowBlockModal(user.id)
+                                        }
+                                    >
                                         <Icon
                                             path={mdiBlockHelper}
-                                            size={0.8}
+                                            size={1.2}
                                             color={"var(--outline-danger)"}
                                         />
                                     </button>
 
-                                    <Modal>
+                                    <Modal
+                                        show={showBlockModal[user.id]}
+                                        onHide={() =>
+                                            handleCloseBlockModal(user.id)
+                                        }
+                                    >
                                         <Modal.Header closeButton>
                                             <Modal.Title>
                                                 Заблокировать пользователя
@@ -183,16 +176,30 @@ export default function UsersList() {
                                         </Modal.Header>
                                         <Modal.Body>
                                             <h2 className='title-md'>
-                                                Заблокировать пользователя #
-                                                {user.id} {user.name}. Вы
-                                                уверены?
+                                                Вы уверены, что хотите
+                                                заблокировать пользователя #
+                                                {user.id} {user.name}?
                                             </h2>
                                         </Modal.Body>
                                         <Modal.Footer>
-                                            <Button variant='secondary'>
+                                            <Button
+                                                variant='secondary'
+                                                onClick={() =>
+                                                    handleCloseBlockModal(
+                                                        user.id
+                                                    )
+                                                }
+                                            >
                                                 Отмена
                                             </Button>
-                                            <Button variant='primary'>
+                                            <Button
+                                                variant='primary'
+                                                onClick={() =>
+                                                    handleCloseBlockModal(
+                                                        user.id
+                                                    )
+                                                }
+                                            >
                                                 Заблокировать
                                             </Button>
                                         </Modal.Footer>
