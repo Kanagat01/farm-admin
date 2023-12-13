@@ -1,9 +1,7 @@
-import "../styles/Login.css";
-
 export default function Login() {
     return (
         <div className='main d-flex flex-column align-items-center'>
-            <h1 className='title my-5'>Администрация фермы</h1>
+            <h1 className='text-align-center my-5'>Администрация фермы</h1>
             <div className='row login-form-container'>
                 <div className='col-lg-5 col-md-7 col-sm-9 col-11 mx-auto'>
                     <form action='#' className='login-form'>

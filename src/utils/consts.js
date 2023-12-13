@@ -1,7 +1,4 @@
 export const DASHBOARD_ROUTE = "/"
 export const LOGIN_ROUTE = "/login/"
-export const INFO_ROUTE = "/info/"
 export const USERS_ROUTE = "/users/"
 export const USER_ROUTE = "/users/:user_id/"
-export const BAN_ROUTE = "/users/:user_id/ban/"
-export const EDIT_ROUTE = "/users/:user_id/edit/"

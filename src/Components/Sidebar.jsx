@@ -2,7 +2,6 @@ import { NavLink } from "react-router-dom";
 import Icon from "@mdi/react";
 import { mdiGauge, mdiAccountMultiple } from "@mdi/js";
 import { DASHBOARD_ROUTE, USERS_ROUTE } from "../utils/consts";
-import "../styles/Sidebar.css";
 
 function Sidebar() {
     const list_elements = [
@@ -27,7 +26,7 @@ function Sidebar() {
                             className='sidebar-link'
                             activeClassName='active'
                         >
-                            <Icon path={el.icon} size={0.8} />
+                            <Icon path={el.icon} size={1.2} />
                             <span>{el.name}</span>
                         </NavLink>
                     </li>
