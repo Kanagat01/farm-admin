@@ -9,9 +9,7 @@ import {
     mdiBlockHelper,
     mdiAccountPlus,
     mdiDownload,
-    mdiSend,
 } from "@mdi/js";
-
 import UserForm from "./UserForm";
 import { USER_ROUTE } from "../../utils/consts";
 import { getUsers } from "../../utils/api_connection";
@@ -39,10 +37,6 @@ export default function UsersList() {
     const [showCreateUserModal, setShowCreateUserModal] = useState(false);
     const changeCreateUserModal = () => {
         setShowCreateUserModal(!showCreateUserModal);
-    };
-    const [showMailingModal, setShowMailingModal] = useState(false);
-    const changeMailingModal = () => {
-        setShowMailingModal(!showMailingModal);
     };
 
     const [showBlockModal, setshowBlockModal] = useState({});
@@ -194,85 +188,13 @@ export default function UsersList() {
                 </CSVLink>
                 {/* Mailing */}
                 <>
-                    <button
-                        className='btn btn-primary rounded-btn d-flex align-items-center py-2 ms-3'
-                        onClick={changeMailingModal}
-                    >
-                        <span className='me-2'>Рассылка</span>
+                    <button className='btn btn-primary rounded-btn d-flex align-items-center py-2 ms-3'>
+                        <span className='me-2'>Сделать рассылку</span>
                         <Icon
                             path={mdiSend}
                             style={{ height: "1.5rem", width: "1.5rem" }}
                         />
                     </button>
-                    <Modal show={showMailingModal} onHide={changeMailingModal}>
-                        <Modal.Header closeButton>
-                            <Modal.Title>Сделать новую рассылку</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                            <div class='form-group input-rounded row d-flex align-items-center'>
-                                <div className='col-md-3 d-flex justify-content-end'>
-                                    <label htmlFor='gender'>
-                                        Категория пользователей
-                                    </label>
-                                </div>
-                                <div className='col-md-9'>
-                                    <div class='custom-radio-inputs ms-3'>
-                                        <label>
-                                            <input
-                                                type='radio'
-                                                name='users_category'
-                                                value='all'
-                                            />
-                                            <span>Все</span>
-                                        </label>
-                                        <label>
-                                            <input
-                                                type='radio'
-                                                name='users_category'
-                                                value='category1'
-                                            />
-                                            <span>Категория 1</span>
-                                        </label>
-                                        <label>
-                                            <input
-                                                type='radio'
-                                                name='users_category'
-                                                value='category2'
-                                            />
-                                            <span>Категория 2</span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class='form-group input-rounded row d-flex align-items-center'>
-                                <div className='col-md-3 d-flex justify-content-end'>
-                                    <label htmlFor='mailing_text'>
-                                        Текст рассылки
-                                    </label>
-                                </div>
-                                <div className='col-md-9'>
-                                    <textarea
-                                        name='mailing_text'
-                                        class='form-control'
-                                    ></textarea>
-                                </div>
-                            </div>
-                        </Modal.Body>
-                        <Modal.Footer>
-                            <Button
-                                variant='secondary'
-                                onClick={changeMailingModal}
-                            >
-                                Отмена
-                            </Button>
-                            <Button
-                                variant='primary'
-                                onClick={changeMailingModal}
-                            >
-                                Отправить
-                            </Button>
-                        </Modal.Footer>
-                    </Modal>
                 </>
             </div>
             <table class='table table-stretched'>
