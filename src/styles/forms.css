@@ -34,6 +34,7 @@
 }
 .form-group label {
     font-size: 1.4rem;
+    text-align: right;
 }
 .radio-label {
     display: inline-flex;
