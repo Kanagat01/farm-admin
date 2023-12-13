@@ -10,6 +10,8 @@ import Login from './Components/Login';
 import UserInfo from './Components/Users/UserInfo';
 import * as Routes from './utils/consts';
 import Dashboard from './Components/Dashboard';
+import PostEdit from './Components/Posts/PostEdit'
+import PostDetails from './Components/Posts/PostDetails';
 
 const router = createBrowserRouter([
   {
@@ -31,7 +33,27 @@ const router = createBrowserRouter([
       {
         path: Routes.USER_ROUTE,
         element: <UserInfo />
-      }
+      },
+      {
+        path: Routes.POST_ROUTE,
+        element: <PostEdit />
+      },
+      {
+        path: Routes.POST_LIKES_ROUTE,
+        element: <PostDetails />
+      },
+      {
+        path: Routes.POST_COMMENTS_ROUTE,
+        element: <PostDetails />
+      },
+      {
+        path: Routes.POST_REPOSTS_ROUTE,
+        element: <PostDetails />
+      },
+      {
+        path: Routes.POST_VIEWS_ROUTE,
+        element: <PostDetails />
+      },
     ]
   }
 ]);
