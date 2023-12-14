@@ -1,7 +1,21 @@
 import { NavLink } from "react-router-dom";
 import Icon from "@mdi/react";
-import { mdiGauge, mdiAccountMultiple, mdiWalletGiftcard } from "@mdi/js";
-import { DASHBOARD_ROUTE, ORDER_ROUTE, USERS_ROUTE } from "../utils/consts";
+import {
+    mdiGauge,
+    mdiAccountMultiple,
+    mdiAccountSupervisor,
+    mdiWalletGiftcard,
+    mdiLeaf,
+    mdiCubeOutline,
+} from "@mdi/js";
+import {
+    DASHBOARD_ROUTE,
+    USERS_ROUTE,
+    ADMINS_ROUTE,
+    ORDERS_ROUTE,
+    CULTURES_ROUTE,
+    MODELS_ROUTE,
+} from "../utils/consts";
 
 function Sidebar() {
     const list_elements = [
@@ -16,9 +30,24 @@ function Sidebar() {
             icon: mdiAccountMultiple,
         },
         {
-            route: ORDER_ROUTE,
-            name: "Заказ",
+            route: ADMINS_ROUTE,
+            name: "Админы",
+            icon: mdiAccountSupervisor,
+        },
+        {
+            route: ORDERS_ROUTE,
+            name: "Заказы",
             icon: mdiWalletGiftcard,
+        },
+        {
+            route: CULTURES_ROUTE,
+            name: "Культуры",
+            icon: mdiLeaf,
+        },
+        {
+            route: MODELS_ROUTE,
+            name: "Модели",
+            icon: mdiCubeOutline,
         },
     ];
     return (
