@@ -78,6 +78,43 @@ export function getUser(user_id) {
     }
 }
 
+export function getAdmins() {
+    const users = [
+        {
+            id: 1,
+            name: "Иван Иванов",
+            username: "Ivan01",
+            role: "Админ 3D",
+        },
+        {
+            id: 2,
+            name: "Петр Петров",
+            username: "Peter02",
+            role: "Админ Ферма",
+        },
+        {
+            id: 3,
+            name: "Мария Сидорова",
+            username: "Maria03",
+            role: "Админ 3D",
+            },
+        {
+            id: 4,
+            name: "Анна Кузнецова",
+            username: "Anna04",
+            role: "Админ 3D",
+            },
+        {
+            id: 5,
+            name: "Алексей Николаев",
+            username: "Alex05",
+            role: "Админ Ферма",
+            },
+    ];
+    return users;
+}
+
+
 export function getPosts(){
     const posts = [
         {

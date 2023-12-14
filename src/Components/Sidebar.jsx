@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import Icon from "@mdi/react";
-import { mdiGauge, mdiAccountMultiple } from "@mdi/js";
-import { DASHBOARD_ROUTE, USERS_ROUTE } from "../utils/consts";
+import { mdiGauge, mdiAccountMultiple, mdiAccountSupervisor } from "@mdi/js";
+import { DASHBOARD_ROUTE, USERS_ROUTE, ADMINS_ROUTE } from "../utils/consts";
 
 function Sidebar() {
     const list_elements = [
@@ -14,6 +14,11 @@ function Sidebar() {
             route: USERS_ROUTE,
             name: "Пользователи",
             icon: mdiAccountMultiple,
+        },
+        {
+            route: ADMINS_ROUTE,
+            name: "Админы",
+            icon: mdiAccountSupervisor,
         },
     ];
     return (
