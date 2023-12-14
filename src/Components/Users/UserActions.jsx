@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { getUser } from '../../utils/api_connection';
 
 export default function UserActions(user_id) {

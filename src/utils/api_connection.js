@@ -135,3 +135,53 @@ export function getPost(post_id) {
         }
     }
 }
+
+export function getOrders(){
+    const orders = [
+        {
+            id: 1,
+            name: "order №1",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus risus, finibus ornare vestibulum et, feugiat quis dui. Vivamus sit amet dolor et magna facilisis rhoncus. Curabitur maximus est sed porta scelerisque. Sed suscipit, arcu volutpat feugiat posuere, eros nisi tristique nibh, mollis vehicula lectus tortor eu purus. ",
+            buyer: "",
+            cost: "15$"
+        },
+        {
+            id: 2,
+            name: "order №2",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus risus, finibus ornare vestibulum et, feugiat quis dui. Vivamus sit amet dolor et magna facilisis rhoncus. Curabitur maximus est sed porta scelerisque. Sed suscipit, arcu volutpat feugiat posuere, eros nisi tristique nibh, mollis vehicula lectus tortor eu purus. ",
+            buyer: "",
+            cost: "15$"
+        },
+        {
+            id: 3,
+            name: "order №3",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus risus, finibus ornare vestibulum et, feugiat quis dui. Vivamus sit amet dolor et magna facilisis rhoncus. Curabitur maximus est sed porta scelerisque. Sed suscipit, arcu volutpat feugiat posuere, eros nisi tristique nibh, mollis vehicula lectus tortor eu purus. ",
+            buyer: "",
+            cost: "15$"
+        },
+        {
+            id: 4,
+            name: "order №4",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus risus, finibus ornare vestibulum et, feugiat quis dui. Vivamus sit amet dolor et magna facilisis rhoncus. Curabitur maximus est sed porta scelerisque. Sed suscipit, arcu volutpat feugiat posuere, eros nisi tristique nibh, mollis vehicula lectus tortor eu purus. ",
+            buyer: "",
+            cost: "15$"
+        },
+        {
+            id: 5,
+            name: "order №5",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus risus, finibus ornare vestibulum et, feugiat quis dui. Vivamus sit amet dolor et magna facilisis rhoncus. Curabitur maximus est sed porta scelerisque. Sed suscipit, arcu volutpat feugiat posuere, eros nisi tristique nibh, mollis vehicula lectus tortor eu purus. ",
+            buyer: "",
+            cost: "15$"
+        }
+    ]
+    return orders;
+} 
+
+export function getOrder(order_id) {
+    const orders = getOrders();
+    for (const order of orders) {
+        if (order.id === order_id) {
+            return order;
+        }
+    }
+}

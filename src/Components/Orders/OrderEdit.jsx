@@ -1,14 +1,8 @@
 import React from 'react'
 
-export default function Order(){
+export default function OrderEdit() {
     return (
-      <div className="main">
-            <div class='table-title '>
-                Товары
-            </div>
-            <div class='table-title '>
-                Покупатель
-            </div>
+      <div className='main'>
             <div class='table-title '>
                 Доставка :
             </div>
@@ -21,7 +15,7 @@ export default function Order(){
                         <input
                             type='text'
                             name='full_name'
-                            class='form-control'
+                            class='form-control border'
                             
                         />
                     </div>
@@ -34,7 +28,7 @@ export default function Order(){
                         <input
                             type='email'
                             name='email'
-                            class='form-control'
+                            class='form-control border'
                         />
                     </div>
                 </div>
@@ -45,7 +39,7 @@ export default function Order(){
                     <div className='col-md-9'>
                         <textarea
                             name='description'
-                            class='form-control'
+                            class='form-control border'
                         ></textarea>
                     </div>
                 </div>
@@ -57,7 +51,7 @@ export default function Order(){
                         <input
                             type='text'
                             name='index post'
-                            class='form-control'
+                            class='form-control border'
                            
                         />
                     </div>
@@ -70,7 +64,7 @@ export default function Order(){
                         <input
                             type='text'
                             name='phone'
-                            class='form-control'
+                            class='form-control border'
                         />
                     </div>
                 </div>
@@ -81,10 +75,18 @@ export default function Order(){
                     <div className='col-md-9'>
                         <input
                             type='name'
-                            className='form-control'
+                            className='form-control border'
                             name='FIO'
                         />
                     </div>
+                </div>
+                <div className='buttons-group justify-content-end'>
+                    <button className='btn btn-secondary'>
+                        Отмена
+                    </button>
+                    <button className='btn btn-success'>
+                        Сохранить
+                    </button>
                 </div>
             </div>
       </div>

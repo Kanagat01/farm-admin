@@ -13,7 +13,7 @@ import Dashboard from './Components/Dashboard';
 import PostEdit from './Components/Posts/PostEdit'
 import PostDetails from './Components/Posts/PostDetails';
 import UserActions from './Components/Users/UserActions';
-import Order from './Components/Order';
+import Order from './Components/Orders/Order';
 
 const router = createBrowserRouter([
   {
