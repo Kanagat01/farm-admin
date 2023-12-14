@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { USER_ACTIONS } from "../../utils/consts";
+import { NavLink } from "react-router-dom";
+
 
 export default function UserForm(userObj) {
     const isCreateMode = Object.keys(userObj).length === 0;
@@ -274,9 +277,11 @@ export default function UserForm(userObj) {
                             <button className='btn btn-primary'>
                                 Комменты
                             </button>
+                            <NavLink to={USER_ACTIONS}>
                             <button className='btn btn-primary'>
                                 Действия
                             </button>
+                            </NavLink>
                             <button className='btn btn-primary'>
                                 Доставки
                             </button>

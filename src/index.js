@@ -12,6 +12,8 @@ import * as Routes from './utils/consts';
 import Dashboard from './Components/Dashboard';
 import PostEdit from './Components/Posts/PostEdit'
 import PostDetails from './Components/Posts/PostDetails';
+import UserActions from './Components/Users/UserActions';
+import Order from './Components/Order';
 
 const router = createBrowserRouter([
   {
@@ -53,6 +55,14 @@ const router = createBrowserRouter([
       {
         path: Routes.POST_VIEWS_ROUTE,
         element: <PostDetails />
+      },
+      {
+        path: Routes.USER_ACTIONS,
+        element: <UserActions />
+      },
+      {
+        path: Routes.ORDER_ROUTE,
+        element: <Order />
       },
     ]
   }

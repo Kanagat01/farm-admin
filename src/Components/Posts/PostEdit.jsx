@@ -28,17 +28,26 @@ export default function PostEdit() {
     return(
         <div className='main'>
             <form className='row g-3 needs-validation p-3' noValidate=''>
-                <div class='table-title my-4'>
-                    Редактирование поста | ID: {post.id} | Название поста: <input value={editedName} onChange={handleNameChange} />
+                <div class='table-title '>
+                    Редактирование поста | ID: {post.id}
+                </div>
+                <div class='table-title'>
+                    Название поста: <input value={editedName} onChange={handleNameChange} />
                 </div>
                 <div className="p-3 fs-3">
-                    <textarea rows={15} cols={140} value={editedDescription} 
-                        onChange={handleDescriptionChange}>
-                    {post.description}
-                    </textarea>
+                    <div className='col-md-9'>
+                        <textarea
+                            name='description'
+                            class='form-control border'
+                            rows={15} 
+                            cols={140}
+                            value={editedDescription}
+                            onChange={handleDescriptionChange}
+                        ></textarea>
+                    </div>
                 </div>
+                <hr />
                 <div className="allManupalations d-flex justify-content-end">
-                    
                         <div className='buttons-group justify-content-end'>
                             <NavLink to={POST_LIKES_ROUTE} style={{ textDecoration: 'none', color: 'black'}}>
                                 <button className='btn btn-primary'><Icon path={mdiThumbUp} size={1} /> {post.likes}</button>
@@ -56,11 +65,14 @@ export default function PostEdit() {
                                 Время публикаций: {post.time_of_publication}
                             </div>
                         </div>
-                    
                 </div>
-                <div>
-                    <button className='btn btn-secondary' onClick={handleSave}>
-                        Редактировать пост
+                <hr />
+                <div className='buttons-group justify-content-end'>
+                    <button className='btn btn-secondary'>
+                        Отмена
+                    </button>
+                    <button className='btn btn-success' onClick={handleSave}>
+                        Сохранить
                     </button>
                 </div>
             </form>
