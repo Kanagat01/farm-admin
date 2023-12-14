@@ -16,7 +16,7 @@ import Dashboard from './Components/Dashboard';
 import PostEdit from './Components/Posts/PostEdit'
 import PostDetails from './Components/Posts/PostDetails';
 import UserActions from './Components/Users/UserActions';
-import Order from './Components/Order';
+import Order from './Components/Orders/Order';
 import ModelsList from './Components/Models/ModelsList';
 import ModelInfo from './Components/Models/ModelInfo';
 import ConfigurationForm from './Components/Models/Configuration';
