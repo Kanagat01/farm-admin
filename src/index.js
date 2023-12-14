@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import Root from "./routes/root";
 import UsersList from './Components/Users/Users';
+import AdminsList from './Components/Admins';
 import Login from './Components/Login';
 import UserInfo from './Components/Users/UserInfo';
 import * as Routes from './utils/consts';
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: Routes.USERS_ROUTE,
         element: <UsersList />
+      },
+      {
+        path: Routes.ADMINS_ROUTE,
+        element: <AdminsList />
       },
       {
         path: Routes.USER_ROUTE,
