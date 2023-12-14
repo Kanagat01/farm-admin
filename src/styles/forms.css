@@ -66,3 +66,44 @@
 textarea.custom-input {
     height: 6rem;
 }
+.checkbox-field {
+    position: relative;
+    height: fit-content;
+    color: var(--bs-body-color);
+}
+.checkbox-field input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+.checkmark {
+    position: absolute;
+    top: auto;
+    left: 15px;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 5px;
+    background-color: var(--blue);
+}
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+.checkbox-field .checkmark:after {
+    left: 0;
+    top: 0;
+    width: 2rem;
+    height: 2rem;
+    background-image: url("../icons/checked.svg");
+    background-position: center;
+    background-size: cover;
+}
+.checkbox-field input:checked ~ .checkmark {
+    background-color: transparent;
+}
+.checkbox-field input:checked ~ .checkmark:after {
+    display: block;
+}

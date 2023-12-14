@@ -2,11 +2,11 @@ import { useState } from "react";
 import { USER_ACTIONS } from "../../utils/consts";
 import { NavLink } from "react-router-dom";
 
-
-export default function UserForm(userObj) {
-    const isCreateMode = Object.keys(userObj).length === 0;
+export default function UserForm(props) {
+    const isCreateMode = Object.keys(props).length === 0;
+    const { userObj } = props;
     const [user, setUser] = useState({
-        ...userObj.userObj,
+        ...userObj,
     });
 
     const updateObjectField = (fieldName, value) => {
@@ -278,9 +278,9 @@ export default function UserForm(userObj) {
                                 Комменты
                             </button>
                             <NavLink to={USER_ACTIONS}>
-                            <button className='btn btn-primary'>
-                                Действия
-                            </button>
+                                <button className='btn btn-primary'>
+                                    Действия
+                                </button>
                             </NavLink>
                             <button className='btn btn-primary'>
                                 Доставки

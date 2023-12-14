@@ -5,12 +5,16 @@ import {
     mdiAccountMultiple,
     mdiAccountSupervisor,
     mdiWalletGiftcard,
+    mdiLeaf,
+    mdiCubeOutline,
 } from "@mdi/js";
 import {
     DASHBOARD_ROUTE,
     USERS_ROUTE,
     ADMINS_ROUTE,
-    ORDER_ROUTE,
+    ORDERS_ROUTE,
+    CULTURES_ROUTE,
+    MODELS_ROUTE,
 } from "../utils/consts";
 
 function Sidebar() {
@@ -31,9 +35,19 @@ function Sidebar() {
             icon: mdiAccountSupervisor,
         },
         {
-            route: ORDER_ROUTE,
-            name: "Заказ",
+            route: ORDERS_ROUTE,
+            name: "Заказы",
             icon: mdiWalletGiftcard,
+        },
+        {
+            route: CULTURES_ROUTE,
+            name: "Культуры",
+            icon: mdiLeaf,
+        },
+        {
+            route: MODELS_ROUTE,
+            name: "Модели",
+            icon: mdiCubeOutline,
         },
     ];
     return (
