@@ -1,16 +1,14 @@
-import React from 'react'
-import { getOrders } from '../../utils/api_connection';
+import React from "react";
+import { getOrders } from "../../utils/api_connection";
 import { NavLink, generatePath } from "react-router-dom";
-import { ORDER_ROUTE } from '../../utils/consts';
+import { ORDER_ROUTE } from "../../utils/consts";
 
-export default function Order(){
+export default function OrdersList() {
     const columns = ["ID", "Имя заказа", "Цена"];
     const orders = getOrders();
     return (
-      <div className="main">
-            <div class='table-title'>
-                Выберите заказ для редактирования
-            </div>
+        <div className='main'>
+            <div class='table-title'>Выберите заказ для редактирования</div>
             <table class='table table-stretched mt-5'>
                 <thead>
                     <tr>
@@ -25,9 +23,12 @@ export default function Order(){
                             <td>{order.id}</td>
                             <td>
                                 <NavLink
-                                    to={(ORDER_ROUTE, {
-                                        order_id: order.id,
-                                    })}
+                                    to={
+                                        generatePath(ORDER_ROUTE,
+                                        {
+                                            order_id: order.id,
+                                        })
+                                    }
                                     className='table-link'
                                 >
                                     {order.name}
@@ -38,6 +39,6 @@ export default function Order(){
                     ))}
                 </tbody>
             </table>
-      </div>
-    )
+        </div>
+    );
 }
