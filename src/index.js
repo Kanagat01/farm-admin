@@ -16,7 +16,7 @@ import Dashboard from './Components/Dashboard';
 import PostEdit from './Components/Posts/PostEdit'
 import PostDetails from './Components/Posts/PostDetails';
 import UserActions from './Components/Users/UserActions';
-import Order from './Components/Orders/Order';
+import OrdersList from './Components/Orders/OrdersList';
 import ModelsList from './Components/Models/ModelsList';
 import ModelInfo from './Components/Models/ModelInfo';
 import ConfigurationForm from './Components/Models/Configuration';
@@ -72,7 +72,7 @@ const router = createBrowserRouter([
       },
       {
         path: Routes.ORDERS_ROUTE,
-        element: <Order />
+        element: <OrdersList />
       },
       {
         path: Routes.CULTURES_ROUTE,

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Input from "../Input";
 
 export default function CultureForm(props) {
     const isCreateMode = Object.keys(props).length === 0;
@@ -13,6 +14,44 @@ export default function CultureForm(props) {
             [fieldName]: value,
         }));
     };
+    const inputs_list = [
+        {
+            label: "Название",
+            name: "name",
+            type: "text",
+            value: culture.name,
+            onChange: (e) => updateObjectField("name", e.target.value),
+        },
+        {
+            label: "Описание",
+            name: "description",
+            type: "textarea",
+            value: culture.description,
+            onChange: (e) => updateObjectField("description", e.target.value),
+        },
+        {
+            label: "Количество уровней",
+            name: "levels",
+            type: "number",
+            value: culture.levels,
+            onChange: (e) => updateObjectField("levels", e.target.value),
+        },
+        {
+            label: "Семейство растений",
+            name: "family_of_plants",
+            type: "text",
+            value: culture.family_of_plants,
+            onChange: (e) =>
+                updateObjectField("family_of_plants", e.target.value),
+        },
+        {
+            label: "Максимальная высота (в см)",
+            name: "max_height",
+            type: "number",
+            value: culture.max_height,
+            onChange: (e) => updateObjectField("max_height", e.target.value),
+        },
+    ];
     return (
         <form className='row' encType='multipart/form-data'>
             {!isCreateMode ? (
@@ -23,92 +62,15 @@ export default function CultureForm(props) {
                 ""
             )}
             <div className='info-block'>
-                <div class='form-group input-rounded row d-flex align-items-center'>
-                    <div className='col-md-3 d-flex justify-content-end'>
-                        <label htmlFor='name'>Название</label>
-                    </div>
-                    <div className='col-md-9'>
-                        <input
-                            type='text'
-                            name='name'
-                            class='form-control'
-                            value={culture.name}
-                            onChange={(e) =>
-                                updateObjectField("name", e.target.value)
-                            }
-                        />
-                    </div>
-                </div>
-                <div class='form-group input-rounded row d-flex align-items-center'>
-                    <div className='col-md-3 d-flex justify-content-end'>
-                        <label htmlFor='description'>Описание</label>
-                    </div>
-                    <div className='col-md-9'>
-                        <textarea
-                            name='description'
-                            class='form-control'
-                            value={culture.description}
-                            onChange={(e) =>
-                                updateObjectField("description", e.target.value)
-                            }
-                        ></textarea>
-                    </div>
-                </div>
-                <div class='form-group input-rounded row d-flex align-items-center'>
-                    <div className='col-md-3 d-flex justify-content-end'>
-                        <label htmlFor='levels'>Количество уровней</label>
-                    </div>
-                    <div className='col-md-9'>
-                        <input
-                            type='number'
-                            name='levels'
-                            class='form-control'
-                            value={culture.levels}
-                            onChange={(e) =>
-                                updateObjectField("levels", e.target.value)
-                            }
-                        />
-                    </div>
-                </div>
-                <div class='form-group input-rounded row d-flex align-items-center'>
-                    <div className='col-md-3 d-flex justify-content-end'>
-                        <label htmlFor='family_of_plants'>
-                            Семейство растений
-                        </label>
-                    </div>
-                    <div className='col-md-9'>
-                        <input
-                            type='text'
-                            name='family_of_plants'
-                            class='form-control'
-                            value={culture.family_of_plants}
-                            onChange={(e) =>
-                                updateObjectField(
-                                    "family_of_plants",
-                                    e.target.value
-                                )
-                            }
-                        />
-                    </div>
-                </div>
-                <div class='form-group input-rounded row d-flex align-items-center'>
-                    <div className='col-md-3 d-flex justify-content-end'>
-                        <label htmlFor='max_height'>
-                            Максимальная высота (в см)
-                        </label>
-                    </div>
-                    <div className='col-md-9'>
-                        <input
-                            type='number'
-                            name='max_height'
-                            class='form-control'
-                            value={culture.levels}
-                            onChange={(e) =>
-                                updateObjectField("max_height", e.target.value)
-                            }
-                        />
-                    </div>
-                </div>
+                {inputs_list.map((el) => (
+                    <Input
+                        label={el.label}
+                        name={el.name}
+                        type={el.type}
+                        value={el.value}
+                        onChange={el.onChange}
+                    />
+                ))}
             </div>
             {!isCreateMode ? (
                 <>

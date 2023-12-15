@@ -4,8 +4,7 @@ import Input from "../Input";
 import { getConfiguration, getModel } from "../../utils/api_connection";
 
 export default function ConfigurationForm() {
-    const { model_id } = useParams;
-    console.log(model_id);
+    const { model_id } = useParams();
     let model = getModel(parseInt(model_id, 10));
     const configurationObj = getConfiguration();
     const [configuration, setConfiguration] = useState({
@@ -96,7 +95,7 @@ export default function ConfigurationForm() {
     ];
     return (
         <form>
-            <div class='table-title my-4'>
+            <div className='table-title my-4'>
                 Информация о конфигурации модели #{model.id} {model.name}
             </div>
 
@@ -107,12 +106,13 @@ export default function ConfigurationForm() {
                         label={el.label}
                         type={el.type}
                         value={el.value}
+                        radio_inputs={el.radio_inputs}
                         onChange={el.onChange}
                     />
                 ))}
             </div>
             <hr />
-            <div className='buttons-group justify-content-end'>
+            <div className='buttons-group justify-content-center'>
                 <button className='btn btn-secondary' type='reset'>
                     Отмена
                 </button>
