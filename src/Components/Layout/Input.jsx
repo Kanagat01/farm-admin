@@ -27,7 +27,7 @@ export default function Input(props) {
         return (
             <div class='form-group input-rounded row d-flex align-items-center'>
                 <div className='col-md-3 d-flex justify-content-end'>
-                    <label htmlFor='subscription_type'>{label}</label>
+                    <label htmlFor={name}>{label}</label>
                 </div>
                 <div className='col-md-9'>
                     <div class='custom-radio-inputs'>

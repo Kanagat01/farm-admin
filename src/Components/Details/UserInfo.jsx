@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { getUser } from "../../utils/api_connection";
 
-import UserForm from "./UserForm";
+import UserForm from "../Forms/UserForm";
 
 export default function UserInfo() {
     const { user_id } = useParams();

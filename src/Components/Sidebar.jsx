@@ -13,7 +13,6 @@ import {
     USERS_ROUTE,
     ADMINS_ROUTE,
     ORDERS_ROUTE,
-    CULTURES_ROUTE,
     MODELS_ROUTE,
 } from "../utils/consts";
 
@@ -40,33 +39,63 @@ function Sidebar() {
             icon: mdiWalletGiftcard,
         },
         {
-            route: CULTURES_ROUTE,
-            name: "Культуры",
-            icon: mdiLeaf,
-        },
-        {
             route: MODELS_ROUTE,
             name: "Модели",
             icon: mdiCubeOutline,
         },
     ];
     return (
-        <div className='sidebar'>
-            <ul className='vertical-list'>
-                {list_elements.map((el) => (
-                    <li>
-                        <NavLink
-                            to={el.route}
-                            className='sidebar-link'
-                            activeClassName='active'
-                        >
-                            <Icon path={el.icon} size={1.2} />
-                            <span>{el.name}</span>
-                        </NavLink>
-                    </li>
-                ))}
-            </ul>
-        </div>
+        <>
+            <div className='sidebar'>
+                <ul className='vertical-list'>
+                    {list_elements.map((el) => (
+                        <li>
+                            <NavLink
+                                to={el.route}
+                                className='sidebar-link'
+                                activeClassName='active'
+                            >
+                                <Icon path={el.icon} size={1.2} />
+                                <span>{el.name}</span>
+                            </NavLink>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+            <div
+                className='offcanvas offcanvas-start'
+                tabindex='-1'
+                id='offcanvasExample'
+                aria-labelledby='offcanvasExampleLabel'
+                style={{ width: "fit-content", paddingRight: "1rem" }}
+            >
+                <div className='offcanvas-header'>
+                    <button
+                        type='button'
+                        className='ms-auto btn-close'
+                        data-bs-dismiss='offcanvas'
+                        aria-label='Close'
+                        style={{ fontSize: "1.5rem" }}
+                    ></button>
+                </div>
+                <div className='offcanvas-body'>
+                    <ul className='vertical-list'>
+                        {list_elements.map((el) => (
+                            <li>
+                                <NavLink
+                                    to={el.route}
+                                    className='sidebar-link'
+                                    activeClassName='active'
+                                >
+                                    <Icon path={el.icon} size={1.2} />
+                                    <span>{el.name}</span>
+                                </NavLink>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
+        </>
     );
 }
 

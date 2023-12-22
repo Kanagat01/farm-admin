@@ -1,9 +1,10 @@
 import { Outlet } from "react-router-dom";
-import Header from "../Components/Header";
-import Sidebar from "../Components/Sidebar";
-import Footer from "../Components/Footer";
+import Header from "./Header";
+import Sidebar from "./Sidebar";
+import Footer from "./Footer";
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle";
 import "../styles/base.css";
 import "../styles/forms.css";
 import "../styles/buttons.css";
@@ -12,7 +13,7 @@ import "../styles/Sidebar.css";
 import "../styles/Header.css";
 import "../styles/Login.css";
 
-export default function Root() {
+export default function App() {
     return (
         <div className='app'>
             <Header />

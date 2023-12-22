@@ -1,4 +1,4 @@
-function Footer() {
+export default function Footer() {
     return (
         <div className='footer'>
             <footer className='d-flex flex-wrap justify-content-center align-items-center py-3 my-4 border-top'>
@@ -12,5 +12,3 @@ function Footer() {
         </div>
     );
 }
-
-export default Footer;

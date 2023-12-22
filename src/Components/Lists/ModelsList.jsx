@@ -2,35 +2,36 @@ import { useState } from "react";
 import { NavLink, generatePath } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 import Icon from "@mdi/react";
-import { getCultures } from "../../utils/api_connection";
-import { CULTURE_ROUTE } from "../../utils/consts";
-import CultureForm from "./CultureForm";
 import { mdiPlus } from "@mdi/js";
+import { getModels } from "../../utils/api_connection";
+import { MODEL_ROUTE } from "../../utils/consts";
+import ModelForm from "../Forms/ModelForm";
+import { truncateString } from "../../utils/filters";
 
-export default function CulturesList() {
+export default function ModelsList() {
     const columns = [
         "ID",
         "Название",
         "Описание",
-        "Семейство растений",
-        "Количество уровней",
+        "Время добавления",
+        "Вес файла",
     ];
-    const cultures = getCultures();
-    const [showCreateCultureModal, setShowCreateCultureModal] = useState(false);
-    const changeCreateCultureModal = () => {
-        setShowCreateCultureModal(!showCreateCultureModal);
+    const models = getModels();
+    const [showCreateModelModal, setShowCreateModelModal] = useState(false);
+    const changeCreateModelModal = () => {
+        setShowCreateModelModal(!showCreateModelModal);
     };
 
     return (
         <div className='main'>
             <div className='d-flex align-items-center'>
                 <div className='table-title my-4'>
-                    Выберите культуру для изменения
+                    Выберите модель для изменения
                 </div>
                 <>
                     <button
                         className='btn btn-primary rounded-btn d-flex align-items-center py-2 ms-4'
-                        onClick={changeCreateCultureModal}
+                        onClick={changeCreateModelModal}
                     >
                         <span className='me-2'>Создать</span>
                         <Icon
@@ -40,25 +41,25 @@ export default function CulturesList() {
                     </button>
 
                     <Modal
-                        show={showCreateCultureModal}
-                        onHide={changeCreateCultureModal}
+                        show={showCreateModelModal}
+                        onHide={changeCreateModelModal}
                     >
                         <Modal.Header closeButton>
-                            <Modal.Title>Создать культуру</Modal.Title>
+                            <Modal.Title>Создать модель</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <CultureForm />
+                            <ModelForm />
                         </Modal.Body>
                         <Modal.Footer>
                             <Button
                                 variant='secondary'
-                                onClick={changeCreateCultureModal}
+                                onClick={changeCreateModelModal}
                             >
                                 Отмена
                             </Button>
                             <Button
                                 variant='primary'
-                                onClick={changeCreateCultureModal}
+                                onClick={changeCreateModelModal}
                             >
                                 Создать
                             </Button>
@@ -66,7 +67,7 @@ export default function CulturesList() {
                     </Modal>
                 </>
             </div>
-            <table class='table table-stretched'>
+            <table className='table table-stretched'>
                 <thead>
                     <tr>
                         {columns.map((col) => (
@@ -75,22 +76,22 @@ export default function CulturesList() {
                     </tr>
                 </thead>
                 <tbody>
-                    {cultures.map((culture) => (
-                        <tr key={culture.id}>
-                            <td>{culture.id}</td>
+                    {models.map((model) => (
+                        <tr key={model.id}>
+                            <td>{model.id}</td>
                             <td>
                                 <NavLink
-                                    to={generatePath(CULTURE_ROUTE, {
-                                        culture_id: culture.id,
+                                    to={generatePath(MODEL_ROUTE, {
+                                        model_id: model.id,
                                     })}
                                     className='table-link'
                                 >
-                                    {culture.name}
+                                    {model.name}
                                 </NavLink>
                             </td>
-                            <td>{culture.description}</td>
-                            <td>{culture.family_of_plants}</td>
-                            <td>{culture.levels}</td>
+                            <td>{truncateString(model.description)}</td>
+                            <td>{model.timestamp}</td>
+                            <td>{model.model_size}</td>
                         </tr>
                     ))}
                 </tbody>

@@ -3,7 +3,7 @@ import { Modal, Button } from "react-bootstrap";
 import Icon from "@mdi/react";
 import { mdiBlockHelper, mdiAccountPlus } from "@mdi/js";
 
-import { getAdmins } from "../utils/api_connection";
+import { getAdmins } from "../../utils/api_connection";
 
 export default function AdminsList() {
     const columns = ["ID", "Имя", "Никнейм", "Роль", ""];
@@ -32,7 +32,7 @@ export default function AdminsList() {
     return (
         <div className='main'>
             <div className='table-title my-4'>Список админов</div>
-            <table class='table table-stretched'>
+            <table className='table table-stretched'>
                 <thead>
                     <tr>
                         {columns.map((col) => (
