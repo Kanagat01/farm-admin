@@ -1,71 +1,24 @@
+const domain = "api.isg.moscow/api";
+
 export function getUsers() {
-    const users = [
-        {
-            id: 1,
-            name: "Иван Иванов",
-            username: "Ivan01",
-            email: "example@mail.com",
-            description: "Люблю всякую всячину",
-            subscription_type: "standart",
-            phone: "+77762747213",
-            birthday: "2023-12-31",
-            gender: "male",
-            other_accounts: ["username1", "username2", "username3"],
-            photo: "https://kartinkof.club/uploads/posts/2022-10/1664696332_29-kartinkof-club-p-kartinka-vecher-v-gorakh-35.jpg"
-        },
-        {
-            id: 2,
-            name: "Петр Петров",
-            username: "Peter02",
-            email: "example@mail.com",
-            description: "Люблю всякую всячину",
-            subscription_type: "premium",
-            phone: "+77762747213",
-            birthday: "2023-12-31",
-            gender: "male",
-            other_accounts: ["username1", "username2", "username3"],
-            photo: "https://kartinkof.club/uploads/posts/2022-10/1664696332_29-kartinkof-club-p-kartinka-vecher-v-gorakh-35.jpg"
-        },
-        {
-            id: 3,
-            name: "Мария Сидорова",
-            username: "Maria03",
-            email: "example@mail.com",
-            description: "Люблю всякую всячину",
-            subscription_type: "standart",
-            phone: "+77762747213",
-            birthday: "2023-12-31",
-            gender: "female",
-            other_accounts: ["username1", "username2", "username3"],
-            photo: "https://kartinkof.club/uploads/posts/2022-10/1664696332_29-kartinkof-club-p-kartinka-vecher-v-gorakh-35.jpg"
-        },
-        {
-            id: 4,
-            name: "Анна Кузнецова",
-            username: "Anna04",
-            email: "example@mail.com",
-            description: "Люблю всякую всячину",
-            subscription_type: "premium",
-            phone: "+77762747213",
-            birthday: "2023-12-31",
-            gender: "female",
-            other_accounts: ["username1", "username2", "username3"],
-            photo: "https://kartinkof.club/uploads/posts/2022-10/1664696332_29-kartinkof-club-p-kartinka-vecher-v-gorakh-35.jpg"
-        },
-        {
-            id: 5,
-            name: "Алексей Николаев",
-            username: "Alex05",
-            email: "example@mail.com",
-            description: "Люблю всякую всячину",
-            subscription_type: "standart",
-            phone: "+77762747213",
-            birthday: "2023-12-31",
-            gender: "male",
-            other_accounts: ["username1", "username2", "username3"],
-            photo: "https://kartinkof.club/uploads/posts/2022-10/1664696332_29-kartinkof-club-p-kartinka-vecher-v-gorakh-35.jpg"
-        },
-    ];
+    const users = [];
+    for (let i=0; i < 5; i++) {
+        users.push(
+            {
+                id: i+1,
+                name: "Иван Иванов",
+                username: "Ivan01",
+                email: "example@mail.com",
+                description: "Люблю всякую всячину",
+                subscription_type: "standart",
+                phone: "+77762747213",
+                birthday: "2023-12-31",
+                gender: "male",
+                other_accounts: ["username1", "username2", "username3"],
+                photo: "https://kartinkof.club/uploads/posts/2022-10/1664696332_29-kartinkof-club-p-kartinka-vecher-v-gorakh-35.jpg"
+            }
+        )
+    }
     return users;
 }
 
@@ -79,85 +32,33 @@ export function getUser(user_id) {
 }
 
 export function getAdmins() {
-    const users = [
-        {
-            id: 1,
+    const admins = [];
+    for (let i=0; i < 5; i++) {
+        admins.push({
+            id: i+1,
             name: "Иван Иванов",
             username: "Ivan01",
             role: "Админ 3D",
-        },
-        {
-            id: 2,
-            name: "Петр Петров",
-            username: "Peter02",
-            role: "Админ Ферма",
-        },
-        {
-            id: 3,
-            name: "Мария Сидорова",
-            username: "Maria03",
-            role: "Админ 3D",
-            },
-        {
-            id: 4,
-            name: "Анна Кузнецова",
-            username: "Anna04",
-            role: "Админ 3D",
-            },
-        {
-            id: 5,
-            name: "Алексей Николаев",
-            username: "Alex05",
-            role: "Админ Ферма",
-            },
-    ];
-    return users;
+        },)
+    }
+    return admins;
 }
 
 
 export function getPosts(){
-    const posts = [
-        {
-            id: 1,
-            name: "Название поста №1",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus risus, finibus ornare vestibulum et, feugiat quis dui. Vivamus sit amet dolor et magna facilisis rhoncus. Curabitur maximus est sed porta scelerisque. Sed suscipit, arcu volutpat feugiat posuere, eros nisi tristique nibh, mollis vehicula lectus tortor eu purus. ",
+    const posts = []
+    for (let i=0; i < 5; i++) {
+        posts.push({
+            id: i+1,
+            owner_id: 1,
+            timestamp: "12-12-2023 09:00",
+            post_text: "lorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum",
+            picture: getPicture(1),
             likes: 15,
-            comments: 56,
-            time_of_publication: "date.now",
-            reposts: 89,
-            views: 800
-        },
-        {
-            id: 2,
-            name: "Название поста №2",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus risus, finibus ornare vestibulum et, feugiat quis dui. Vivamus sit amet dolor et magna facilisis rhoncus. Curabitur maximus est sed porta scelerisque. Sed suscipit, arcu volutpat feugiat posuere, eros nisi tristique nibh, mollis vehicula lectus tortor eu purus. ",
-            likes: 15,
-            comments: 56,
-            time_of_publication: "date.now",
-            reposts: 89,
-            views: 800
-        },
-        {
-            id: 3,
-            name: "Название поста №3",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus risus, finibus ornare vestibulum et, feugiat quis dui. Vivamus sit amet dolor et magna facilisis rhoncus. Curabitur maximus est sed porta scelerisque. Sed suscipit, arcu volutpat feugiat posuere, eros nisi tristique nibh, mollis vehicula lectus tortor eu purus. ",
-            likes: 15,
-            comments: 56,
-            time_of_publication: "date.now",
-            reposts: 89,
-            views: 800
-        },
-        {
-            id: 4,
-            name: "Название поста №4",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus risus, finibus ornare vestibulum et, feugiat quis dui. Vivamus sit amet dolor et magna facilisis rhoncus. Curabitur maximus est sed porta scelerisque. Sed suscipit, arcu volutpat feugiat posuere, eros nisi tristique nibh, mollis vehicula lectus tortor eu purus. ",
-            likes: 15,
-            comments: 56,
-            time_of_publication: "date.now",
-            reposts: 89,
-            views: 800
-        }
-    ]
+            views: 800,
+            comments: getComments(1)
+        })
+    }
     return posts;
 }
 
@@ -167,50 +68,39 @@ export function getPost(post_id) {
         if (post.id === post_id) {
             return post;
         }
-        else {
-            return post;
-        }
     }
 }
 
-export function getOrders(){
-    const orders = [
-        {
+export function getComments(post_id) {
+    const comments = []
+    for (let i=0; i<5; i++) {
+        comments.push({
             id: 1,
-            name: "order №1",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus risus, finibus ornare vestibulum et, feugiat quis dui. Vivamus sit amet dolor et magna facilisis rhoncus. Curabitur maximus est sed porta scelerisque. Sed suscipit, arcu volutpat feugiat posuere, eros nisi tristique nibh, mollis vehicula lectus tortor eu purus. ",
-            buyer: "",
-            cost: "15$"
-        },
-        {
-            id: 2,
-            name: "order №2",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus risus, finibus ornare vestibulum et, feugiat quis dui. Vivamus sit amet dolor et magna facilisis rhoncus. Curabitur maximus est sed porta scelerisque. Sed suscipit, arcu volutpat feugiat posuere, eros nisi tristique nibh, mollis vehicula lectus tortor eu purus. ",
-            buyer: "",
-            cost: "15$"
-        },
-        {
-            id: 3,
-            name: "order №3",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus risus, finibus ornare vestibulum et, feugiat quis dui. Vivamus sit amet dolor et magna facilisis rhoncus. Curabitur maximus est sed porta scelerisque. Sed suscipit, arcu volutpat feugiat posuere, eros nisi tristique nibh, mollis vehicula lectus tortor eu purus. ",
-            buyer: "",
-            cost: "15$"
-        },
-        {
-            id: 4,
-            name: "order №4",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus risus, finibus ornare vestibulum et, feugiat quis dui. Vivamus sit amet dolor et magna facilisis rhoncus. Curabitur maximus est sed porta scelerisque. Sed suscipit, arcu volutpat feugiat posuere, eros nisi tristique nibh, mollis vehicula lectus tortor eu purus. ",
-            buyer: "",
-            cost: "15$"
-        },
-        {
-            id: 5,
-            name: "order №5",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus risus, finibus ornare vestibulum et, feugiat quis dui. Vivamus sit amet dolor et magna facilisis rhoncus. Curabitur maximus est sed porta scelerisque. Sed suscipit, arcu volutpat feugiat posuere, eros nisi tristique nibh, mollis vehicula lectus tortor eu purus. ",
-            buyer: "",
-            cost: "15$"
-        }
-    ]
+            comment_owner: 1,
+            text: "comments text"
+        })
+    }
+    return comments;
+}
+export function getComment(comment_id) {
+    return {id: 1,
+        comment_owner: 1,
+        text: "comments text"}
+}
+
+export function getOrders(){
+    const orders = []
+    for (let i =0; i< 5; i++) {
+        orders.push(
+            {
+                id: i+1,
+                name: "order",
+                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus risus, finibus ornare vestibulum et, feugiat quis dui. Vivamus sit amet dolor et magna facilisis rhoncus. Curabitur maximus est sed porta scelerisque. Sed suscipit, arcu volutpat feugiat posuere, eros nisi tristique nibh, mollis vehicula lectus tortor eu purus. ",
+                buyer: "",
+                cost: "15$"
+            }
+        )
+    }
     return orders;
 } 
 
@@ -282,17 +172,9 @@ export function getModel(model_id) {
     }
 }
 
-export function getConfiguration() {
-    const config = {
-        unit_of_measure: "millimeter",  // Inch, millimeter
-        unit_of_temp_measure: "C", // C, F, K 
-        x: 15, 
-        y: 35, 
-        z: 25, 
-        offset_x: 45,
-        offset_y: 55,
-        offset_z: 65,
-        diameter: 45,
+export function getPicture(picture_id) {
+    let picture= {
+        url: "https://kartinkof.club/uploads/posts/2022-10/1664696332_29-kartinkof-club-p-kartinka-vecher-v-gorakh-35.jpg"
     }
-    return config
+    return picture;
 }

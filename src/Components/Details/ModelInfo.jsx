@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { getModel } from "../../utils/api_connection";
 
-import ModelForm from "./ModelForm";
+import ModelForm from "../Forms/ModelForm";
 
 export default function ModelInfo() {
     const { model_id } = useParams();

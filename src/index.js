@@ -4,27 +4,26 @@ import {
   createBrowserRouter,
   RouterProvider
 } from "react-router-dom";
-import Root from "./routes/root";
-import UsersList from './Components/Users/UsersList';
-import CulturesList from './Components/Cultures/CulturesList';
-import CultureInfo from './Components/Cultures/CultureInfo';
-import AdminsList from './Components/Admins';
+import App from "./Components/App";
+import UsersList from './Components/Lists/UsersList';
+import AdminsList from './Components/Lists/Admins';
 import Login from './Components/Login';
-import UserInfo from './Components/Users/UserInfo';
+import Logout from './Components/Logout';
+import UserInfo from './Components/Details/UserInfo';
 import * as Routes from './utils/consts';
 import Dashboard from './Components/Dashboard';
-import PostEdit from './Components/Posts/PostEdit'
-import PostDetails from './Components/Posts/PostDetails';
-import UserActions from './Components/Users/UserActions';
-import OrdersList from './Components/Orders/OrdersList';
-import ModelsList from './Components/Models/ModelsList';
-import ModelInfo from './Components/Models/ModelInfo';
-import ConfigurationForm from './Components/Models/Configuration';
+import PostsList from './Components/Lists/PostsList'
+import PostInfo from './Components/Details/PostInfo';
+import OrdersList from './Components/Lists/OrdersList';
+import ModelsList from './Components/Lists/ModelsList';
+import ModelInfo from './Components/Details/ModelInfo';
+import PostComments from './Components/Lists/PostComments';
+
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
+    element: <App />,
     children: [
       {
         path: Routes.DASHBOARD_ROUTE,
@@ -35,51 +34,36 @@ const router = createBrowserRouter([
         element: <Login />
       },
       {
-        path: Routes.USERS_ROUTE,
-        element: <UsersList />
+        path: Routes.LOGOUT_ROUTE,
+        element: <Logout />
       },
       {
         path: Routes.ADMINS_ROUTE,
         element: <AdminsList />
       },
       {
+        path: Routes.USERS_ROUTE,
+        element: <UsersList />
+      },
+      {
         path: Routes.USER_ROUTE,
         element: <UserInfo />
       },
       {
-        path: Routes.POST_ROUTE,
-        element: <PostEdit />
+        path: Routes.POSTS_ROUTE,
+        element: <PostsList />
       },
       {
-        path: Routes.POST_LIKES_ROUTE,
-        element: <PostDetails />
+        path: Routes.POST_ROUTE,
+        element: <PostInfo />
       },
       {
         path: Routes.POST_COMMENTS_ROUTE,
-        element: <PostDetails />
-      },
-      {
-        path: Routes.POST_REPOSTS_ROUTE,
-        element: <PostDetails />
-      },
-      {
-        path: Routes.POST_VIEWS_ROUTE,
-        element: <PostDetails />
-      },
-      {
-        path: Routes.USER_ACTIONS,
-        element: <UserActions />
+        element: <PostComments />
       },
       {
         path: Routes.ORDERS_ROUTE,
         element: <OrdersList />
-      },
-      {
-        path: Routes.CULTURES_ROUTE,
-        element: <CulturesList />
-      }, {
-        path: Routes.CULTURE_ROUTE,
-        element: <CultureInfo />
       },
       {
         path: Routes.MODELS_ROUTE,
@@ -89,10 +73,6 @@ const router = createBrowserRouter([
         path: Routes.MODEL_ROUTE,
         element: <ModelInfo />
       },
-      {
-        path: Routes.CONFIGURATION_ROUTE,
-        element: <ConfigurationForm />
-      }
     ]
   }
 ]);

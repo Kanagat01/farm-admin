@@ -12,7 +12,8 @@ import {
     mdiSend,
 } from "@mdi/js";
 
-import UserForm from "./UserForm";
+import Input from "../Layout/Input";
+import UserForm from "../Forms/UserForm";
 import { USER_ROUTE } from "../../utils/consts";
 import { getUsers } from "../../utils/api_connection";
 
@@ -60,6 +61,40 @@ export default function UsersList() {
             [userId]: true,
         }));
     };
+    const filter_inputs = [
+        {
+            label: "По типу подписки",
+            type: "radio",
+            name: "subscryption_type",
+            radio_inputs: [
+                {
+                    label: "Стандарт",
+                    value: "standart",
+                },
+                {
+                    label: "Премиум",
+                    value: "premium",
+                },
+            ],
+        },
+    ];
+    const mailing_inputs = [
+        {
+            label: "Категория пользователей",
+            type: "radio",
+            name: "users_category",
+            radio_inputs: [
+                { label: "Все", value: "all" },
+                { label: "Категория 1", value: "category1" },
+                { label: "Категория 2", value: "category2" },
+            ],
+        },
+        {
+            label: "Текст рассылки",
+            type: "textarea",
+            name: "mailing_text",
+        },
+    ];
 
     return (
         <div className='main'>
@@ -101,29 +136,16 @@ export default function UsersList() {
                             <Modal.Title>Фильтр</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <div className='d-flex align-items-center'>
-                                <h2 className='title-md my-0'>
-                                    По типу подписки
-                                </h2>
-                                <div class='custom-radio-inputs ms-3'>
-                                    <label>
-                                        <input
-                                            type='radio'
-                                            name='subscription_type'
-                                            value='standart'
-                                        />
-                                        <span>Стандарт</span>
-                                    </label>
-                                    <label>
-                                        <input
-                                            type='radio'
-                                            name='subscription_type'
-                                            value='premium'
-                                        />
-                                        <span>Премиум</span>
-                                    </label>
-                                </div>
-                            </div>
+                            {filter_inputs.map((el) => (
+                                <Input
+                                    name={el.name}
+                                    label={el.label}
+                                    type={el.type}
+                                    value={el.value}
+                                    radio_inputs={el.radio_inputs}
+                                    onChange={el.onChange}
+                                />
+                            ))}
                         </Modal.Body>
                         <Modal.Footer>
                             <Button
@@ -209,54 +231,16 @@ export default function UsersList() {
                             <Modal.Title>Сделать новую рассылку</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <div class='form-group input-rounded row d-flex align-items-center'>
-                                <div className='col-md-3 d-flex justify-content-end'>
-                                    <label htmlFor='gender'>
-                                        Категория пользователей
-                                    </label>
-                                </div>
-                                <div className='col-md-9'>
-                                    <div class='custom-radio-inputs ms-3'>
-                                        <label>
-                                            <input
-                                                type='radio'
-                                                name='users_category'
-                                                value='all'
-                                            />
-                                            <span>Все</span>
-                                        </label>
-                                        <label>
-                                            <input
-                                                type='radio'
-                                                name='users_category'
-                                                value='category1'
-                                            />
-                                            <span>Категория 1</span>
-                                        </label>
-                                        <label>
-                                            <input
-                                                type='radio'
-                                                name='users_category'
-                                                value='category2'
-                                            />
-                                            <span>Категория 2</span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class='form-group input-rounded row d-flex align-items-center'>
-                                <div className='col-md-3 d-flex justify-content-end'>
-                                    <label htmlFor='mailing_text'>
-                                        Текст рассылки
-                                    </label>
-                                </div>
-                                <div className='col-md-9'>
-                                    <textarea
-                                        name='mailing_text'
-                                        class='form-control'
-                                    ></textarea>
-                                </div>
-                            </div>
+                            {mailing_inputs.map((el) => (
+                                <Input
+                                    name={el.name}
+                                    label={el.label}
+                                    type={el.type}
+                                    value={el.value}
+                                    radio_inputs={el.radio_inputs}
+                                    onChange={el.onChange}
+                                />
+                            ))}
                         </Modal.Body>
                         <Modal.Footer>
                             <Button
@@ -275,7 +259,7 @@ export default function UsersList() {
                     </Modal>
                 </>
             </div>
-            <table class='table table-stretched'>
+            <table className='table table-stretched'>
                 <thead>
                     <tr>
                         {columns.map((col) => (
