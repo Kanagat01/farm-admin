@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { LOGIN_ROUTE } from "../utils/consts";
+import { LOGIN_ROUTE } from "../utils/routes";
 
 export default function Footer() {
     return (

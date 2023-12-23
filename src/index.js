@@ -5,74 +5,35 @@ import {
   RouterProvider
 } from "react-router-dom";
 import App from "./Components/App";
-import UsersList from './Components/Lists/UsersList';
-import AdminsList from './Components/Lists/Admins';
+import DataTable from "./Components/Layout/DataTable";
 import Login from './Components/Login';
 import Logout from './Components/Logout';
-import UserInfo from './Components/Details/UserInfo';
-import * as Routes from './utils/consts';
+import * as Routes from './utils/routes';
 import Dashboard from './Components/Dashboard';
-import PostsList from './Components/Lists/PostsList'
-import PostInfo from './Components/Details/PostInfo';
-import OrdersList from './Components/Lists/OrdersList';
-import ModelsList from './Components/Lists/ModelsList';
-import ModelInfo from './Components/Details/ModelInfo';
-import PostComments from './Components/Lists/PostComments';
+import DetailPage from './Components/Layout/DetailPage';
+import ErrorPage from './Components/ErrorPage';
 
+const details = [...Object.keys(Routes.detailRoutes)];
+const dataTables = [...Object.keys(Routes.listRoutes)];
+
+const children = [
+  [Routes.DASHBOARD_ROUTE, <Dashboard />], 
+  [Routes.LOGIN_ROUTE, <Login />], 
+  [Routes.LOGOUT_ROUTE, <Logout />],
+  ...details.map((route) => ([route, <DetailPage />])),
+  ...dataTables.map((route) => ([route, <DataTable />]))
+];
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    // errorElement: <ErrorPage />,
     children: [
-      {
-        path: Routes.DASHBOARD_ROUTE,
-        element: <Dashboard />
-      },
-      {
-        path: Routes.LOGIN_ROUTE,
-        element: <Login />
-      },
-      {
-        path: Routes.LOGOUT_ROUTE,
-        element: <Logout />
-      },
-      {
-        path: Routes.ADMINS_ROUTE,
-        element: <AdminsList />
-      },
-      {
-        path: Routes.USERS_ROUTE,
-        element: <UsersList />
-      },
-      {
-        path: Routes.USER_ROUTE,
-        element: <UserInfo />
-      },
-      {
-        path: Routes.POSTS_ROUTE,
-        element: <PostsList />
-      },
-      {
-        path: Routes.POST_ROUTE,
-        element: <PostInfo />
-      },
-      {
-        path: Routes.POST_COMMENTS_ROUTE,
-        element: <PostComments />
-      },
-      {
-        path: Routes.ORDERS_ROUTE,
-        element: <OrdersList />
-      },
-      {
-        path: Routes.MODELS_ROUTE,
-        element: <ModelsList />
-      }, 
-      {
-        path: Routes.MODEL_ROUTE,
-        element: <ModelInfo />
-      },
+      ...children.map(([route, element]) => ({
+        path: route,
+        element: element
+      }))
     ]
   }
 ]);

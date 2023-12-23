@@ -13,25 +13,20 @@ import {
 } from "@mdi/js";
 
 import Input from "../Layout/Input";
-import UserForm from "../Forms/UserForm";
+import DetailForm from "../Layout/DetailForm";
 import { USER_ROUTE } from "../../utils/consts";
 import { getUsers } from "../../utils/api_connection";
+import { getUserDB } from "../../utils/models";
 
 export default function UsersList() {
     const columns = ["ID", "Имя", "Никнейм", "Тип подписки", ""];
-    const headers = [
-        { label: "ID", key: "id" },
-        { label: "Полное Имя", key: "name" },
-        { label: "О себе", key: "description" },
-        { label: "Имя Пользователя", key: "username" },
-        { label: "Email", key: "email" },
-        { label: "Тип подписки", key: "subscription_type" },
-        { label: "Номер телефона", key: "phone" },
-        { label: "Дата рождения", key: "birthday" },
-        { label: "Пол", key: "gender" },
-        { label: "Фото", key: "photo" },
-        { label: "Другие аккаунты", key: "other_accounts" },
-    ];
+    const headers = [{ label: "ID", key: "id" }];
+    let relInfo = getUserDB();
+    Object.entries(relInfo).map(([key, value]) => {
+        headers.push({ label: value.verbose_name, key: key });
+        return 0;
+    });
+
     const users = getUsers();
     const [showFilterModal, setShowFilterModal] = useState(false);
     const changeFilterModal = () => {
@@ -102,17 +97,17 @@ export default function UsersList() {
                 Выберите пользователя для изменения
             </div>
             <div className='d-flex align-items-center'>
-                <form action='#' class='search-box my-4'>
-                    <div class='input-group'>
+                <form action='#' className='search-box my-4'>
+                    <div className='input-group'>
                         <input
                             type='text'
-                            class='form-control'
+                            className='form-control'
                             id='inlineFormInputGroup'
                             placeholder='Искать по ID, Имя или Никнейм'
-                            autocomplete='off'
+                            autoComplete='off'
                         />
                         <button
-                            class='btn btn-primary rounded-btn d-inline-flex align-items-center justify-content-center'
+                            className='btn btn-primary rounded-btn d-inline-flex align-items-center justify-content-center'
                             type='submit'
                         >
                             <Icon path={mdiArrowRightThick} size={1} />
@@ -184,7 +179,10 @@ export default function UsersList() {
                             <Modal.Title>Создать пользователя</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <UserForm />
+                            <DetailForm
+                                isCreateMode={true}
+                                relatedInfo={relInfo}
+                            />
                         </Modal.Body>
                         <Modal.Footer>
                             <Button

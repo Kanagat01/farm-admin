@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { isValidEmail } from "../../utils/filters";
 
 export default function Input(props) {
     const { name, label, type, value, onChange } = props;
@@ -6,7 +7,7 @@ export default function Input(props) {
 
     if (type === "checkbox") {
         return (
-            <label class='form-group checkbox-field row'>
+            <label className='form-group checkbox-field row'>
                 <div className='col-md-3 d-flex justify-content-end'>
                     <label htmlFor={name}>{label}</label>
                 </div>
@@ -25,12 +26,12 @@ export default function Input(props) {
     } else if (type === "radio") {
         const { radio_inputs } = props;
         return (
-            <div class='form-group input-rounded row d-flex align-items-center'>
+            <div className='form-group input-rounded row d-flex align-items-center'>
                 <div className='col-md-3 d-flex justify-content-end'>
                     <label htmlFor={name}>{label}</label>
                 </div>
                 <div className='col-md-9'>
-                    <div class='custom-radio-inputs'>
+                    <div className='custom-radio-inputs'>
                         {radio_inputs.map((el) => (
                             <label>
                                 <input
@@ -49,7 +50,7 @@ export default function Input(props) {
         );
     } else if (type === "textarea") {
         return (
-            <div class='form-group input-rounded row d-flex align-items-center'>
+            <div className='form-group input-rounded row d-flex align-items-center'>
                 <div className='col-md-3 d-flex justify-content-end'>
                     <label htmlFor={name}>{label}</label>
                 </div>
@@ -70,15 +71,11 @@ export default function Input(props) {
         };
         const phoneOnChange = (e) => {
             onChange(e);
-            if (isValidPhoneNumber(e.target.value)) {
-                setIsValid(true);
-            } else {
-                setIsValid(false);
-            }
+            setIsValid(isValidPhoneNumber(e.target.value));
         };
 
         return (
-            <div class='form-group input-rounded row d-flex align-items-center'>
+            <div className='form-group input-rounded row d-flex align-items-center'>
                 <div className='col-md-3 d-flex justify-content-end'>
                     <label htmlFor={name}>{label}</label>
                 </div>
@@ -87,7 +84,7 @@ export default function Input(props) {
                         type={type}
                         name={name}
                         className={`form-control ${
-                            isValid ? "is-valid" : "is-invalid"
+                            value ? (isValid ? "is-valid" : "is-invalid") : ""
                         }`}
                         value={value}
                         onChange={phoneOnChange}
@@ -109,7 +106,7 @@ export default function Input(props) {
             }
         };
         return (
-            <div class='form-group input-rounded row d-flex align-items-center'>
+            <div className='form-group input-rounded row d-flex align-items-center'>
                 <div className='col-md-3 d-flex justify-content-end'>
                     <label htmlFor={name}>{label}</label>
                 </div>
@@ -138,20 +135,12 @@ export default function Input(props) {
             </div>
         );
     } else if (type === "email") {
-        const isValidEmail = (email) => {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
-        };
         const emailOnChange = (e) => {
             onChange(e);
-            if (isValidEmail(e.target.value)) {
-                setIsValid(true);
-            } else {
-                setIsValid(false);
-            }
+            setIsValid(isValidEmail(e.target.value));
         };
         return (
-            <div class='form-group input-rounded row d-flex align-items-center'>
+            <div className='form-group input-rounded row d-flex align-items-center'>
                 <div className='col-md-3 d-flex justify-content-end'>
                     <label htmlFor={name}>{label}</label>
                 </div>
@@ -160,7 +149,7 @@ export default function Input(props) {
                         type={type}
                         name={name}
                         className={`form-control ${
-                            isValid ? "is-valid" : "is-invalid"
+                            value ? (isValid ? "is-valid" : "is-invalid") : ""
                         }`}
                         value={value}
                         onChange={emailOnChange}
@@ -176,7 +165,7 @@ export default function Input(props) {
         );
     }
     return (
-        <div class='form-group input-rounded row d-flex align-items-center'>
+        <div className='form-group input-rounded row d-flex align-items-center'>
             <div className='col-md-3 d-flex justify-content-end'>
                 <label htmlFor={name}>{label}</label>
             </div>

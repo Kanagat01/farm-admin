@@ -3,24 +3,27 @@ import { NavLink, generatePath } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 import Icon from "@mdi/react";
 import { mdiPlus } from "@mdi/js";
+
+import DetailForm from "../Layout/DetailForm";
 import { getModels } from "../../utils/api_connection";
 import { MODEL_ROUTE } from "../../utils/consts";
-import ModelForm from "../Forms/ModelForm";
 import { truncateString } from "../../utils/filters";
+import { getModelDB } from "../../utils/models";
 
 export default function ModelsList() {
     const columns = [
         "ID",
         "Название",
+        "Дата создания",
+        "Размер файла",
         "Описание",
-        "Время добавления",
-        "Вес файла",
     ];
     const models = getModels();
     const [showCreateModelModal, setShowCreateModelModal] = useState(false);
     const changeCreateModelModal = () => {
         setShowCreateModelModal(!showCreateModelModal);
     };
+    const relInfo = getModelDB();
 
     return (
         <div className='main'>
@@ -48,7 +51,10 @@ export default function ModelsList() {
                             <Modal.Title>Создать модель</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <ModelForm />
+                            <DetailForm
+                                isCreateMode={true}
+                                relatedInfo={relInfo}
+                            />
                         </Modal.Body>
                         <Modal.Footer>
                             <Button
@@ -89,9 +95,9 @@ export default function ModelsList() {
                                     {model.name}
                                 </NavLink>
                             </td>
-                            <td>{truncateString(model.description)}</td>
                             <td>{model.timestamp}</td>
-                            <td>{model.model_size}</td>
+                            <td>{model.file_size}</td>
+                            <td>{truncateString(model.description)}</td>
                         </tr>
                     ))}
                 </tbody>
