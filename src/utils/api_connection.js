@@ -1,4 +1,4 @@
-const domain = "api.isg.moscow/api";
+// const domain = "https://api.isg.moscow/api";
 
 export function getUsers() {
     const users = [];
@@ -10,12 +10,10 @@ export function getUsers() {
                 username: "Ivan01",
                 email: "example@mail.com",
                 description: "Люблю всякую всячину",
-                subscription_type: "standart",
                 phone: "+77762747213",
-                birthday: "2023-12-31",
+                bday: "2023-12-31",
                 gender: "male",
-                other_accounts: ["username1", "username2", "username3"],
-                photo: "https://kartinkof.club/uploads/posts/2022-10/1664696332_29-kartinkof-club-p-kartinka-vecher-v-gorakh-35.jpg"
+                friends: [1, 2, 3]
             }
         )
     }
@@ -44,7 +42,6 @@ export function getAdmins() {
     return admins;
 }
 
-
 export function getPosts(){
     const posts = []
     for (let i=0; i < 5; i++) {
@@ -56,10 +53,14 @@ export function getPosts(){
             picture: getPicture(1),
             likes: 15,
             views: 800,
-            comments: getComments(1)
+            comments: getPostComments(1)
         })
     }
     return posts;
+}
+
+export function getPostLike() {
+    return ;
 }
 
 export function getPost(post_id) {
@@ -71,7 +72,7 @@ export function getPost(post_id) {
     }
 }
 
-export function getComments(post_id) {
+export function getPostComments(post_id) {
     const comments = []
     for (let i=0; i<5; i++) {
         comments.push({
@@ -82,6 +83,11 @@ export function getComments(post_id) {
     }
     return comments;
 }
+
+export function getPostLikes() {
+    return;
+}
+
 export function getComment(comment_id) {
     return {id: 1,
         comment_owner: 1,
@@ -139,8 +145,9 @@ export function getCulture(culture_id) {
         }
     }
 }
+
 export function getModels() {
-    const models = []
+    let models = []
     for (let i=0; i < 5; i++) {
         models.push({
             id: i+1,
@@ -177,4 +184,189 @@ export function getPicture(picture_id) {
         url: "https://kartinkof.club/uploads/posts/2022-10/1664696332_29-kartinkof-club-p-kartinka-vecher-v-gorakh-35.jpg"
     }
     return picture;
+}
+
+export function getChats() {
+    let chats = []
+    for (let i=0; i<5; i++){
+        chats.push({
+            id: i+1,
+            user_1: 1,
+            user_2: 1,
+            messages: ["Hi", "Hello"]
+        })
+    }
+    return chats
+}
+
+export function getChatMessages() {
+    return;
+}
+
+export function getMessage() {
+    return;
+}
+
+export function getChat() {
+    return getChats()[0]
+}
+
+export function getFarms() {
+    let farms = []
+    for (let i=0; i<5; i++) {
+        farms.push({
+            id: i+1,
+            garden_list: ["garden1", "garden2", "garden3"],
+            size: "155mb"
+        })
+    }
+    return farms;
+} 
+
+export function getFarm() {
+    return getFarms()[0]
+}
+
+export function getGifts() {
+    let gifts = []
+    for (let i=0; i<5; i++) {
+        gifts.push({
+            id: i+1,
+            from: 1,
+            to: 1,
+            count: [getModels().slice(0, 4)],
+            comment: "Gift comment"
+        })
+    }
+    return gifts;
+}
+
+export function getGift() {
+    return getGifts()[0]
+}
+
+export function getSeeds() {
+    let seeds = []
+    for (let i=0; i<5; i++) {
+        seeds.push({
+            id: i+1,
+            name: "Seed 1",
+            picture: getPicture(1),
+            category: 1,
+            description: "Description of seed",
+            url_pics: [getPicture(1), getPicture(1)],
+            levels: [],
+            seeds_list: [],
+            start: "12-12-2023",
+            information: "",
+            note: "Some note"
+        })
+    }
+    return seeds
+}
+
+export function getSeed() {
+    return getSeeds()[0]
+}
+
+export function getReviews() {
+    let reviews = []
+    for (let i=0; i<5; i++) {
+        reviews.push({
+            id: i+1,
+            owner_id: 1,
+            timestamp: "12-12-2023",
+            text: "Some text",
+            rate: 5.0,
+            magazine_answer: "Magazine answer", 
+            pictures: [1, 2, 3],
+            likes: 15,
+            dislikes: 15
+        })
+    }
+    return reviews;
+}
+
+export function getReview() {
+    return getReviews()[0]
+}
+
+export function getReviewLikes() {
+    return
+}
+
+export function getReviewDislikes() {
+    return
+}
+
+export function getLikeToReview() {
+    return ;
+}
+
+export function getDislikeToReview() {
+    return 
+}
+
+export function getGarden() {
+    return 
+}
+
+export function getGardenCell() {
+    return 
+}
+
+export function getSeedInformation() {
+    return 
+}
+
+export function getSeedLevels() {
+    return
+}
+
+export function getLots() {
+    return
+}
+
+export function getLotCategories() {
+    return
+}
+
+export function getPlantedSeed() {
+    return
+}
+
+export function getLot() {
+    return;
+}
+
+export function getLotDescription() {
+    return;
+}
+
+export function getLotCategory() {
+    return;
+}
+
+export function getPrinters() {
+    return;
+}
+
+export function getPrinter() {
+    return;
+}
+
+export function get3DLevels() {
+    return;
+}
+
+export function getLevel3D() {
+    return;
+}
+
+export function get3DGifts() {
+    return
+}
+
+export function getFarmGifts() {
+    return
 }

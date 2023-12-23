@@ -17,7 +17,7 @@ export default function Login() {
             <div className='row login-form-container'>
                 <div className='col-xl-6 col-lg-8 col-sm-10 col-12 mx-auto'>
                     <form className='login-form' onSubmit={handleLogin}>
-                        <div class='form-group input-rounded'>
+                        <div className='form-group input-rounded'>
                             <label
                                 htmlFor='email'
                                 style={{
@@ -30,13 +30,13 @@ export default function Login() {
                             <input
                                 type='text'
                                 name='username'
-                                class='form-control'
+                                className='form-control'
                                 placeholder='Введите имя пользователя'
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
                             />
                         </div>
-                        <div class='form-group input-rounded'>
+                        <div className='form-group input-rounded'>
                             <label
                                 htmlFor='email'
                                 style={{
@@ -48,13 +48,16 @@ export default function Login() {
                             </label>
                             <input
                                 type='password'
-                                class='form-control'
+                                className='form-control'
                                 placeholder='Введите пароль'
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
-                        <button type='submit' class='btn btn-primary btn-block'>
+                        <button
+                            type='submit'
+                            className='btn btn-primary btn-block'
+                        >
                             Войти
                         </button>
                     </form>

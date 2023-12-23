@@ -31,14 +31,14 @@ export default function OrdersList() {
                                 </NavLink>
                             </td>
                             <td>
-                                <NavLink
+                                {/* <NavLink
                                     to={generatePath(USER_ROUTE, {
                                         user_id: order.owner_id,
                                     })}
                                     className='table-link'
                                 >
                                     {getUser(order.owner_id).name}
-                                </NavLink>
+                                </NavLink> */}
                             </td>
                             <td>{order.date}</td>
                             <td>{order.price}</td>

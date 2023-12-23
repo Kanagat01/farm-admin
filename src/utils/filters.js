@@ -8,3 +8,8 @@ export function truncateString(str) {
         return str;
     }
 }
+
+export const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+};

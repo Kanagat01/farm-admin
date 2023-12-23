@@ -2,7 +2,7 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 
-import { LOGOUT_ROUTE } from "../utils/consts";
+import { LOGOUT_ROUTE } from "../utils/routes";
 
 function Header() {
     let username = "Kana";

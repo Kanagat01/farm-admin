@@ -12,6 +12,7 @@ import "../styles/table.css";
 import "../styles/Sidebar.css";
 import "../styles/Header.css";
 import "../styles/Login.css";
+import "../styles/error_page.css";
 
 export default function App() {
     return (

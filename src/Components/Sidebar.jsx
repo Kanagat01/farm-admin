@@ -14,7 +14,7 @@ import {
     ADMINS_ROUTE,
     ORDERS_ROUTE,
     MODELS_ROUTE,
-} from "../utils/consts";
+} from "../utils/routes";
 
 function Sidebar() {
     const list_elements = [
@@ -49,11 +49,11 @@ function Sidebar() {
             <div className='sidebar'>
                 <ul className='vertical-list'>
                     {list_elements.map((el) => (
-                        <li>
+                        <li key={list_elements.indexOf(el)}>
                             <NavLink
                                 to={el.route}
                                 className='sidebar-link'
-                                activeClassName='active'
+                                activeclassname='active'
                             >
                                 <Icon path={el.icon} size={1.2} />
                                 <span>{el.name}</span>
@@ -64,7 +64,7 @@ function Sidebar() {
             </div>
             <div
                 className='offcanvas offcanvas-start'
-                tabindex='-1'
+                tabIndex='-1'
                 id='offcanvasExample'
                 aria-labelledby='offcanvasExampleLabel'
                 style={{ width: "fit-content", paddingRight: "1rem" }}
@@ -81,11 +81,11 @@ function Sidebar() {
                 <div className='offcanvas-body'>
                     <ul className='vertical-list'>
                         {list_elements.map((el) => (
-                            <li>
+                            <li key={list_elements.indexOf(el)}>
                                 <NavLink
                                     to={el.route}
                                     className='sidebar-link'
-                                    activeClassName='active'
+                                    activeclassname='active'
                                 >
                                     <Icon path={el.icon} size={1.2} />
                                     <span>{el.name}</span>
