@@ -1,0 +1,23 @@
+.login-form-container {
+    width: 100%;
+}
+
+.login-form {
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 0 10px -5px rgba(183, 192, 206, 0.15);
+    padding: 6rem 9rem;
+    border: 1px solid rgba(238, 238, 238, 0);
+}
+
+@media (max-width: 576px) {
+    .login-form {
+        padding: 6rem;
+    }
+}
+
+@media (max-width: 375px) {
+    .login-form {
+        padding: 4rem 1.5rem;
+    }
+}

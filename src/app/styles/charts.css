@@ -1,0 +1,40 @@
+.chart-block {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    background-color: #fff;
+    padding: 20px 25px 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--default-box-shadow);
+}
+.nav-tabs {
+    border-bottom: 0;
+}
+.nav-tabs .nav-link {
+    background-color: #fff;
+    color: var(--light-gray);
+    font-size: 1.6rem;
+    padding: 1rem 2rem;
+    isolation: isolate;
+}
+.nav-item:first-child .nav-link {
+    border-top-left-radius: 15px;
+}
+.nav-item:last-child .nav-link {
+    border-top-right-radius: 15px;
+}
+.nav-link.active {
+    background: var(--primary);
+}
+.dropdown-item {
+    font-size: 1.4rem;
+}
+.dropdown-item.active,
+.dropdown-item:active {
+    background-color: var(--outline-info);
+}
+@media (max-width: 375px) {
+    .nav-tabs .nav-link {
+        padding: 1rem;
+    }
+}

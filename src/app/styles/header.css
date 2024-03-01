@@ -1,0 +1,34 @@
+.header {
+    background: var(--header-gradient);
+    color: #fff;
+}
+.header-title {
+    text-align: center;
+    font-size: 2.4rem;
+    font-weight: 500;
+}
+.greeting,
+.logout-btn {
+    font-size: 1.8rem;
+    color: #fff;
+}
+.logout-btn {
+    border: none;
+    background: none;
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .header-title {
+        font-size: 2rem;
+    }
+    .greeting,
+    .logout-btn {
+        font-size: 1.6rem;
+    }
+}
+@media (max-width: 420px) {
+    .greeting {
+        display: none;
+    }
+}

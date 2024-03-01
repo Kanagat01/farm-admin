@@ -1,0 +1,94 @@
+:root {
+  --primary: linear-gradient(#6c66c6, #66a3c6);
+  --outline-info: #6c66c6;
+  --outline-danger: #db504a;
+  --success: #68d594;
+  --success-active: #84ecb9;
+  --black-op4: rgba(16, 16, 16, 0.4);
+  --header-gradient: linear-gradient(#68d594, #84ecb9);
+  --sidebar-link: #525c5d;
+  --table-title: rgb(0, 0, 0, 0.8);
+  --table-link: #565656;
+  --form-control-bg: #f8f9fb;
+  --card-bg: #f4f5f8;
+  --form-control-color: #6c757d;
+  --border-radius: 30px;
+  --default-box-shadow: 0px 0px 30px 0px rgba(108, 102, 198, 0.1);
+}
+html {
+  font-size: 10px;
+}
+.main {
+  background: var(--form-control-bg);
+  flex: 1;
+  padding: 2rem 4rem;
+  width: calc(100vw - 25rem); /* 25rem is sidebar width */
+}
+.footer {
+  background-color: var(--form-control-bg);
+}
+.search-box {
+  display: flex;
+  width: 28rem;
+  height: fit-content;
+  background: #fff;
+  border-radius: var(--border-radius);
+  box-shadow: var(--default-box-shadow);
+  padding: 0.5rem;
+  transition: 0.3s ease-in-out;
+  overflow: hidden;
+}
+.rounded-btn {
+  height: 100%;
+  border-radius: var(--border-radius) !important;
+  padding: 0 1rem;
+}
+.title-md {
+  opacity: 0.9;
+  margin-bottom: 2.5rem;
+  font-size: 1.6rem;
+}
+.checkbox label,
+.radio label {
+  font-size: 1.4rem;
+}
+input[type="radio"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+.btn-without-bg {
+  background: none;
+  border: none;
+}
+.info-block {
+  background-color: #fff;
+  padding: 2rem;
+}
+.buttons-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.photo-link {
+  font-size: 1.4rem;
+  color: #000;
+}
+.modal-title {
+  font-size: 2.4rem;
+}
+.text-gray {
+  color: rgba(32, 32, 32, 0.3);
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 110.3%;
+}
+.Toastify {
+  font-size: 1.4rem;
+}
+@media (max-width: 768px) {
+  .main {
+    padding: 2rem;
+    width: 100vw;
+  }
+}

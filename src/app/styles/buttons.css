@@ -1,0 +1,62 @@
+.btn-block {
+    width: 100%;
+}
+.btn-group label.btn input {
+    display: none;
+}
+.btn {
+    --bs-btn-font-size: 1.4rem;
+    --bs-btn-font-weight: 500;
+}
+.btn-primary {
+    color: #fff;
+    background: var(--primary);
+    border-color: var(--primary);
+}
+.btn-success {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: var(--success);
+    --bs-btn-border-color: var(--success);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--success-active);
+    --bs-btn-hover-border-color: var(--success-active);
+    --bs-btn-focus-shadow-rgb: none;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--success-active);
+    --bs-btn-active-border-color: var(--success-active);
+    --bs-btn-active-shadow: none;
+}
+.btn-outline-info {
+    --bs-btn-color: var(--outline-info);
+    --bs-btn-border-color: var(--outline-info);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--outline-info);
+    --bs-btn-hover-border-color: var(--outline-info);
+    --bs-btn-focus-shadow-rgb: none;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--outline-info);
+    --bs-btn-active-border-color: var(--outline-info);
+    --bs-btn-active-shadow: none;
+    --bs-btn-disabled-color: var(--outline-info);
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: var(--outline-info);
+    --bs-gradient: none;
+    --bs-border-width: 2px;
+}
+.btn-outline-danger {
+    --bs-btn-color: var(--outline-danger);
+    --bs-btn-border-color: var(--outline-danger);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--outline-danger);
+    --bs-btn-hover-border-color: var(--outline-danger);
+    --bs-btn-focus-shadow-rgb: none;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--outline-danger);
+    --bs-btn-active-border-color: var(--outline-danger);
+    --bs-btn-active-shadow: none;
+    --bs-btn-disabled-color: var(--outline-danger);
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: var(--outline-danger);
+    --bs-gradient: none;
+    --bs-border-width: 2px;
+}
