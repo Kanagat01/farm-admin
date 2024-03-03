@@ -3,10 +3,9 @@ FROM node:20.11.0-alpine
 WORKDIR /app
 
 COPY . /app/
-RUN npm install
+RUN yarn install
 
+RUN yarn run build
 
-RUN npm run build
-
-RUN npm install -g serve
+RUN yarn global add serve
 CMD ["serve", "-s", "dist"]

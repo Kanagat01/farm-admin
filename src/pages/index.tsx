@@ -4,6 +4,7 @@ import { routes, permissions } from "~/shared/router";
 import { Footer, Header, NotAccessed, Sidebar } from "~/widgets";
 import { AuthContext } from "~/app/providers";
 import { Preloader } from "~/shared/ui";
+import SuccessPayment from "./success_payment";
 
 const PrivateRoute = () => {
   const { isAuthenticated } = useContext(AuthContext);
@@ -69,6 +70,7 @@ export const Routing = () => {
         path={routes.LOGIN_ROUTE}
         element={withLayout(routes.LOGIN_ROUTE, LoginPage)}
       />
+      <Route path={routes.SUCCESS_PAYMENT_ROUTE} element={<SuccessPayment />} />
       <Route element={<PrivateRoute />}>
         {routeElements.map(([route, element], index) => (
           <Route

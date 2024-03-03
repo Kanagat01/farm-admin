@@ -5,7 +5,7 @@ import {
   SetStateAction,
   useState,
 } from "react";
-import { refreshToken } from "~/shared/api";
+import { isTokenExpired } from "~/shared/api";
 
 export type AuthContextType = {
   isAuthenticated: boolean;
@@ -18,10 +18,10 @@ export const AuthContext = createContext<AuthContextType>({
 });
 
 export const withAuthContext = (component: () => ReactNode) => () => {
-  let jwtToken = localStorage.getItem("access_token");
+  let jwtToken = localStorage.getItem("refresh_token");
   let isAuth = false;
   if (jwtToken) {
-    refreshToken(jwtToken);
+    isTokenExpired(jwtToken);
     isAuth = true;
   }
   const [isAuthenticated, setAuth] = useState(isAuth);

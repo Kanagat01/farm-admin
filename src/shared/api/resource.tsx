@@ -22,8 +22,6 @@ export const createResource = (url: string) => {
     read() {
       if (status === "pending") {
         throw suspender;
-      } else if (status === "error") {
-        throw result;
       } else if (status === "success") {
         return result;
       }

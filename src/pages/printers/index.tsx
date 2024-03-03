@@ -41,7 +41,8 @@ export default function Printers() {
           }
           if (responseData.length < 40) {
             loadPages = false;
-          } else {
+          }
+          if (loadPages) {
             fetchData(page + 1);
           }
         })

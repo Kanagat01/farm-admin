@@ -23,7 +23,7 @@ export const PieChart: FC<PieChartProps> = ({ label, labels, dataset }) => {
       },
     ],
   };
-  const options = {
+  const options: any = {
     title: {
       display: true,
       text: "",

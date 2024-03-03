@@ -62,14 +62,14 @@ export const BarChart: React.FC<BarChartProps> = ({
   };
   const chartRef = useRef(null);
   useEffect(() => {
-    const chart: ChartJS | null = chartRef.current;
+    const chart: any = chartRef.current;
 
     if (chart) {
       let gradientStroke = chart.ctx.createLinearGradient(100, 60, 30, 0);
       gradientStroke.addColorStop(0, "#6c66c6"); // var(--primary)
       gradientStroke.addColorStop(1, "#66a3c6");
 
-      const newDatasets = chart.data.datasets.map((set) => ({
+      const newDatasets = chart.data.datasets.map((set: any) => ({
         ...set,
         backgroundColor: gradientStroke,
         borderColor: gradientStroke,

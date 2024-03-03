@@ -6,3 +6,5 @@ export const MARKETPLACE_ROUTE = "/marketplace";
 export const ORDERS_ROUTE = "/orders";
 export const LOGISTICS_ROUTE = "/logistics";
 export const SUPPORT_MESSAGES_ROUTE = "/support_messages";
+
+export const SUCCESS_PAYMENT_ROUTE = "/success_payment";
