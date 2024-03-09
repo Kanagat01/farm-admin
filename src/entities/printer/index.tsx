@@ -55,6 +55,7 @@ export type Printer = {
 };
 
 export const PrinterHeaders = [
+  "ID модели на печати",
   "Модель",
   "Дата создания",
   "Готовы все уровни",

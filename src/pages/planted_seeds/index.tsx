@@ -7,6 +7,7 @@ import { CreateModal, Shelv } from "~/widgets";
 import { Table } from "~/shared/ui";
 import { apiInstance, createResource } from "~/shared/api";
 import { dateToString, useSocket } from "~/shared/lib";
+import { envDataTranslation } from "~/entities";
 
 const evnDataResourse = createResource("/api_admin/get_environmental_data/");
 const farmsResourse = createResource("/api_admin/get_farms/");
@@ -14,17 +15,6 @@ const videosResourse = createResource("/api_admin/get_live_video_urls/");
 
 export default function PlantedSeeds() {
   const websocket = useContext(WebSocketContext);
-  let translation: Record<string, string> = {
-    id: "id",
-    date: "Дата",
-    CO2: "CO2",
-    air_temperature: "Температура воздуха",
-    air_humidity: "Влажность воздуха",
-    UV_index: "Индекс УФ",
-    soil_humidity_1_centimeter: "Влажность почвы 1 сантиметр",
-    soil_humidity_1_5_centimeter: "Влажность почвы 1.5 сантиметра",
-  };
-
   let responseData = evnDataResourse.read();
   if (responseData && "date" in responseData) {
     responseData.date = dateToString(responseData.date);
@@ -32,7 +22,7 @@ export default function PlantedSeeds() {
   let translatedData: Record<string, string> = {};
 
   for (let key in responseData) {
-    translatedData[translation[key]] = responseData[key];
+    translatedData[envDataTranslation[key]] = responseData[key];
   } // @ts-ignore
   const [envData, setEnvData] = useState<any>(translatedData);
 
@@ -53,6 +43,7 @@ export default function PlantedSeeds() {
   let farmResponseData = farmsResourse.read();
   let sortedData = sortFarmData(farmResponseData);
   const [farmData, setFarmData] = useState<any>(sortedData);
+
   const getFarms = () => {
     apiInstance.get("/api_admin/get_farms/").then((response) => {
       let sortedData = sortFarmData(response.data);

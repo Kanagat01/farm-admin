@@ -62,6 +62,7 @@ export default function Printers() {
   const tableData = [
     ...data.map((obj: Printer, index) => {
       return [
+        obj.printing_model_id,
         <ModelInfo model={obj.model} />,
         dateToString(obj.created_date),
         obj.is_all_levels_done ? "Да" : "Нет",

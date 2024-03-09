@@ -21,7 +21,7 @@ function SeedCard(props: any) {
 
   const plantedSeedModel = planted_seed
     ? {
-        ID: cell.id,
+        "ID посаженной семени": planted_seed.id,
         "Дата создания": created_date,
         "Готовы все уровни": planted_seed.is_all_levels_done ? "Да" : "Нет",
         "Готов в реальной жизни": planted_seed.is_ready_in_real_life
@@ -79,13 +79,14 @@ function SeedCard(props: any) {
         >
           {planted_seed?.seed_name ? (
             <>
-              {planted_seed?.seed_name}
+              {planted_seed?.seed_name.slice(0, 15)}
+              {planted_seed?.seed_name.length > 15 ? "..." : ""}
               <br />
             </>
           ) : (
             ""
           )}
-          id: {cell.id}
+          id ячейки: {cell.id}
         </a>
 
         <Modal
