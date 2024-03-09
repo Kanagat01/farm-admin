@@ -1,7 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { WebSocketContext } from "~/app/providers";
-import { FilterPrinters } from "~/features";
 import { ModelInfo, PrintedModal, UserInfo } from "~/widgets";
 import { apiInstance, createResource } from "~/shared/api";
 import { dateToString, useSocket } from "~/shared/lib";
@@ -13,10 +12,8 @@ const resource = createResource("/api_admin/get_printer_requests/?page=1");
 export default function Printers() {
   const websocket = useContext(WebSocketContext);
   let firstPageData = resource.read().message;
-  console.log(firstPageData);
 
   const [data, setData] = useState<any[]>(firstPageData);
-
   const removeObj = (objToRemove: any) => {
     setData(data.filter((obj) => obj !== objToRemove));
   };
@@ -63,42 +60,13 @@ export default function Printers() {
   }, []);
 
   const tableData = [
-    ...data.map((obj: Printer) => {
+    ...data.map((obj: Printer, index) => {
       return [
-        ...[
-          "printing_model_id",
-          "model",
-          "created_date",
-          "is_all_levels_done",
-          "owner",
-          "is_printed",
-        ].map((key, index) => {
-          switch (key) {
-            case "created_date":
-              return dateToString(obj.created_date);
-            case "is_all_levels_done":
-              return obj[key] ? "Да" : "Нет";
-            case "is_printed":
-              return (
-                <PrintedModal
-                  id={index}
-                  printerObj={obj}
-                  removeObj={removeObj}
-                />
-              );
-            case "owner":
-              return obj.owner ? (
-                <UserInfo id={index} user={obj.owner} />
-              ) : (
-                "Отсутствует"
-              );
-            case "model":
-              return <ModelInfo model={obj.model} />;
-            default:
-              //@ts-ignore
-              return obj[key];
-          }
-        }),
+        <ModelInfo model={obj.model} />,
+        dateToString(obj.created_date),
+        obj.is_all_levels_done ? "Да" : "Нет",
+        obj.owner ? <UserInfo id={index} user={obj.owner} /> : "Отсутствует",
+        <PrintedModal id={index} printerObj={obj} removeObj={removeObj} />,
       ];
     }),
   ];
@@ -107,7 +75,6 @@ export default function Printers() {
     <>
       <div className="table-title my-4">Информация о принтерах</div>
       <ToastContainer />
-      <FilterPrinters setData={setData} />
       <Table columns={PrinterHeaders} data={tableData} />
     </>
   );

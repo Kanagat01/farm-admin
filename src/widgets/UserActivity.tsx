@@ -36,9 +36,7 @@ export function UserActivityModal({ user_id }: UserActivityProps) {
         setIsLoading(false);
       });
   }, []);
-  return isLoading ? (
-    <Preloader />
-  ) : (
+  return (
     <>
       <a className="table-link" onClick={changeModal}>
         Смотреть
@@ -49,7 +47,11 @@ export function UserActivityModal({ user_id }: UserActivityProps) {
           <Modal.Title>Действия пользователя #{user_id}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Table columns={Object.values(UserActivityHeaders)} data={data} />
+          {isLoading ? (
+            <Preloader />
+          ) : (
+            <Table columns={Object.values(UserActivityHeaders)} data={data} />
+          )}
         </Modal.Body>
       </Modal>
     </>

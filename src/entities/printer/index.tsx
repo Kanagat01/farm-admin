@@ -7,7 +7,6 @@ export type ModelLevel = {
   level_index: number;
   name: string;
   description: string;
-  batch: number;
 };
 
 export const ModelLevelTranslation = {
@@ -17,7 +16,6 @@ export const ModelLevelTranslation = {
   level_index: "Индекс уровня",
   name: "Название",
   description: "Описание",
-  batch: "batch",
 };
 
 export type Model = {
@@ -57,7 +55,6 @@ export type Printer = {
 };
 
 export const PrinterHeaders = [
-  "ID",
   "Модель",
   "Дата создания",
   "Готовы все уровни",

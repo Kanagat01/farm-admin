@@ -7,10 +7,10 @@ const resource = createResource("/api_admin/get_marketplace_buy_sell/");
 export function Purchases() {
   const allData = resource.read().message;
   const dataModel = {
-    printer_buy: "Buy 3D",
-    printer_sell: "Sell 3D",
-    farm_buy: "Buy Ферма",
-    farm_sell: "Sell Ферма",
+    printer_buy: "Выставлено на продажу 3D",
+    printer_sell: "Продано 3D",
+    farm_buy: "Выставлено на продажу Ферма",
+    farm_sell: "Продано Ферма",
   };
   const options = ["Неделя", "Месяц", "45 дней", "Квартал"];
   const getTableData = (option: string) => {
