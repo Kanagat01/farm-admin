@@ -2,17 +2,19 @@ import { useEffect, useState, useContext } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { WebSocketContext } from "~/app/providers";
 import { FilterPrinters } from "~/features";
-import { PrintedModal } from "~/widgets";
+import { ModelInfo, PrintedModal, UserInfo } from "~/widgets";
 import { apiInstance, createResource } from "~/shared/api";
 import { dateToString, useSocket } from "~/shared/lib";
 import { Table } from "~/shared/ui";
-import { API_URL } from "~/shared/config";
+import { Printer, PrinterHeaders } from "~/entities";
 
 const resource = createResource("/api_admin/get_printer_requests/?page=1");
 
 export default function Printers() {
   const websocket = useContext(WebSocketContext);
   let firstPageData = resource.read().message;
+  console.log(firstPageData);
+
   const [data, setData] = useState<any[]>(firstPageData);
 
   const removeObj = (objToRemove: any) => {
@@ -28,14 +30,14 @@ export default function Printers() {
         .get(`/api_admin/get_printer_requests/?page=${page}`)
         .then((response) => {
           let responseData: any[] = response.data.message;
-          if (page === 1) {
-            setData(responseData);
+          if (page === 2) {
             const onClose = () => {
               if (isMounted) {
                 toast.error("Сокет отключен. Перезагрузите страницу");
               }
             };
             useSocket(websocket, setData, onClose);
+            setData(responseData);
           } else {
             setData((prevData) => [...prevData, ...responseData]);
           }
@@ -60,51 +62,42 @@ export default function Printers() {
     };
   }, []);
 
-  const columns = [
-    "ID",
-    "Модель",
-    "Статус",
-    "ID заказа",
-    "ID пользователя",
-    "Пользователь",
-    "Дата создания",
-    "Готовы все уровни",
-    "Напечатано",
-  ];
   const tableData = [
-    ...data.map((obj: any, index: number) => {
+    ...data.map((obj: Printer) => {
       return [
         ...[
           "printing_model_id",
-          "model_name",
-          "status",
-          "order_id",
-          "owner_id",
-          "owner_name",
+          "model",
           "created_date",
           "is_all_levels_done",
+          "owner",
           "is_printed",
-        ].map((key) => {
-          if (key === "model_image") {
-            return (
-              <a
-                href={API_URL + obj[key]}
-                target="_blank"
-                className="table-link"
-              >
-                Смотреть изображение
-              </a>
-            );
-          } else if (key === "created_date") {
-            return dateToString(obj.created_date);
-          } else if (key === "is_all_levels_done") {
-            return obj[key] ? "Да" : "Нет";
-          } else if (key === "is_printed") {
-            return (
-              <PrintedModal id={index} printerObj={obj} removeObj={removeObj} />
-            );
+        ].map((key, index) => {
+          switch (key) {
+            case "created_date":
+              return dateToString(obj.created_date);
+            case "is_all_levels_done":
+              return obj[key] ? "Да" : "Нет";
+            case "is_printed":
+              return (
+                <PrintedModal
+                  id={index}
+                  printerObj={obj}
+                  removeObj={removeObj}
+                />
+              );
+            case "owner":
+              return obj.owner ? (
+                <UserInfo id={index} user={obj.owner} />
+              ) : (
+                "Отсутствует"
+              );
+            case "model":
+              return <ModelInfo model={obj.model} />;
+            default:
+              //@ts-ignore
+              return obj[key];
           }
-          return obj[key];
         }),
       ];
     }),
@@ -113,10 +106,9 @@ export default function Printers() {
   return (
     <>
       <div className="table-title my-4">Информация о принтерах</div>
-
       <ToastContainer />
       <FilterPrinters setData={setData} />
-      <Table columns={columns} data={tableData} />
+      <Table columns={PrinterHeaders} data={tableData} />
     </>
   );
 }

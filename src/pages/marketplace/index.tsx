@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-import { Revenue } from "~/widgets";
-import { apiInstance } from "~/shared/api";
+import { MarketplaceTrends, Purchases, Revenue } from "~/widgets";
+import { createResource } from "~/shared/api";
 import { dateToString } from "~/shared/lib";
 import { DropdownCategories } from "~/shared/ui";
 import { Table } from "~/shared/ui";
+
+const resource = createResource("/api_admin/get_marketplace_data/");
 
 export default function Marketplace() {
   const columns = [
@@ -15,16 +17,6 @@ export default function Marketplace() {
     "Действие",
     "Дата создания",
   ];
-  const [allData, setAllData] = useState([]);
-  const [tableData, setTableData] = useState<any[]>([]);
-
-  useEffect(() => {
-    apiInstance.get("/api_admin/get_marketplace_data/").then((response) => {
-      const responseData = response.data.message;
-      setAllData(responseData);
-      setTableData(getTableData(responseData));
-    });
-  }, []);
   const getTableData = (data: any) => {
     return [
       ...data.map((operation: any) => [
@@ -37,6 +29,9 @@ export default function Marketplace() {
       ]),
     ];
   };
+  const responseData = resource.read().message; //@ts-ignore
+  const [allData, setAllData] = useState(responseData);
+  const [tableData, setTableData] = useState<any[]>(getTableData(responseData));
 
   const [selectedOption, setSelectedOption] = useState("Все");
   const options = ["Все", "Ферма", "3D"];
@@ -55,6 +50,8 @@ export default function Marketplace() {
 
   return (
     <>
+      <Purchases />
+      <MarketplaceTrends />
       <div
         className="table-title d-flex align-items-center my-4"
         style={{ gap: "1.5rem" }}

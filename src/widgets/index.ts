@@ -9,3 +9,8 @@ export * from "./DeliverySentModal";
 export * from "./Shelv";
 export * from "./Analytics";
 export * from "./Revenue";
+export * from "./UserActivity";
+export * from "./ModelInfo";
+export * from "./UserInfo";
+export * from "./Purchases";
+export * from "./MarketplaceTrends";

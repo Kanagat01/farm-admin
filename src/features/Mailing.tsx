@@ -10,7 +10,7 @@ interface MailingObj {
   type: string;
   text: string;
   title: string;
-  users_array: string[];
+  users: string[];
 }
 
 export const Mailing = () => {
@@ -23,52 +23,98 @@ export const Mailing = () => {
     type: "all",
     text: "",
     title: "",
-    users_array: [],
+    users: [],
   });
 
   const [userMail, setUserMail] = useState("");
+
+  const appendEmail = (parentNode: ParentNode, email: string) => {
+    let arrayElement = parentNode.querySelector(".array-elements");
+
+    if (!arrayElement) {
+      arrayElement = document.createElement("div");
+      arrayElement.classList.add("array-elements", "col-md-9", "ms-auto");
+      parentNode.appendChild(arrayElement);
+    }
+
+    const mailNode = document.createElement("div");
+    mailNode.textContent = email;
+
+    const closeButton = document.createElement("button");
+    closeButton.classList.add("btn-close");
+    closeButton.addEventListener("click", () => {
+      let users_array = [...mailingObj.users];
+      const index = users_array.indexOf(email);
+      if (index > -1) {
+        users_array.splice(index, 1);
+      }
+      setMailingObj({
+        ...mailingObj,
+        users: users_array,
+      });
+      mailNode.remove();
+    });
+
+    mailNode.appendChild(closeButton);
+    arrayElement.appendChild(mailNode);
+
+    setMailingObj({
+      ...mailingObj,
+      users: [...mailingObj.users, email],
+    });
+    setUserMail("");
+  };
+
   const handleKeyPress = (e: any) => {
     if (e.key === "Enter") {
       e.preventDefault();
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (emailRegex.test(userMail)) {
+      if (emailRegex.test(userMail) && !mailingObj.users.includes(userMail)) {
         const parentNode = e.target.parentNode.parentNode;
-        let arrayElement = parentNode.querySelector(".array-elements");
-
-        if (!arrayElement) {
-          arrayElement = document.createElement("div");
-          arrayElement.classList.add("array-elements", "col-md-9", "ms-auto");
-          parentNode.appendChild(arrayElement);
-        }
-
-        const mailNode = document.createElement("div");
-        mailNode.textContent = userMail;
-
-        const closeButton = document.createElement("button");
-        closeButton.classList.add("btn-close");
-        closeButton.addEventListener("click", () => {
-          let users_array = [...mailingObj.users_array];
-          const index = users_array.indexOf(userMail);
-          if (index > -1) {
-            users_array.splice(index, 1);
-          }
-          setMailingObj({
-            ...mailingObj,
-            users_array: users_array,
-          });
-          mailNode.remove();
-        });
-
-        mailNode.appendChild(closeButton);
-        arrayElement.appendChild(mailNode);
-
-        setMailingObj({
-          ...mailingObj,
-          users_array: [...mailingObj.users_array, userMail],
-        });
-        setUserMail("");
+        appendEmail(parentNode, userMail);
       }
     }
+  };
+  const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
+    let text = e.target.value;
+    if (text.length >= 3) {
+      apiInstance
+        .post("/api_admin/get_user_emails/", { text: text })
+        .then((response): void => {
+          let data = response.data.message;
+          data =
+            data.length > 0
+              ? data.map((obj: { email: string }) => obj.email)
+              : [];
+
+          const parentNode = e.target.parentNode as HTMLElement;
+          parentNode.classList.add("position-relative");
+          parentNode.querySelector("invalid-feedback")?.classList.add("d-none");
+
+          let results = parentNode?.querySelector(".results");
+          if (!results) {
+            results = document.createElement("div");
+            results.classList.add("results");
+            parentNode.appendChild(results);
+          }
+          results.innerHTML = "";
+
+          for (let email in data) {
+            let item = document.createElement("div");
+            item.classList.add("res-item");
+            item.textContent = data[email];
+            item.onclick = () => {
+              if (!mailingObj.users.includes(data[email])) {
+                appendEmail(parentNode.parentNode as ParentNode, data[email]);
+                //@ts-ignore
+                results.innerHTML = "";
+              }
+            };
+            results.appendChild(item);
+          }
+        });
+    }
+    setUserMail(text);
   };
 
   const mailing_inputs = [
@@ -96,7 +142,7 @@ export const Mailing = () => {
         { label: "Все", value: "all" },
         { label: "Ферма", value: "farm" },
         { label: "3D", value: "printer" },
-        { label: "Определенные пользователи", value: "specific_users" },
+        { label: "Определенные пользователи", value: "specific" },
       ]}
       value={mailingObj.type}
       onChange={(e: ChangeEvent<HTMLInputElement>) => {
@@ -107,11 +153,10 @@ export const Mailing = () => {
       label="Email пользователя"
       name="user_mail"
       value={userMail}
-      onChange={(e: ChangeEvent<HTMLInputElement>) => {
-        setUserMail(e.target.value);
-      }}
+      onChange={onChangeEmail}
       onKeyDown={handleKeyPress}
-      show={mailingObj.type === "specific_users"}
+      show={mailingObj.type === "specific"}
+      show_feedback={false}
     />,
   ];
 

@@ -5,30 +5,38 @@ export type User = {
   phone_number: string;
   coin_count: number;
   subscription_type: "ST" | "TE" | "PR";
-  level_of_achievments: number;
-  level_in_app: number;
-  registration_date: string;
-  activity: Array<any>;
+  xp: number;
+  joined_date: string;
   is_banned: boolean;
 };
 
-export const getUserHeaders = () => {
-  return [
-    ["id", "ID"],
-    ["name", "Имя"],
-    ["email", "Email"],
-    ["phone_number", "Номер телефона"],
-    ["coin_count", "Количество монет"],
-    ["subscription_type", "Тип подписки"],
-    ["level_of_achievments", "Уровень достижений"],
-    ["level_in_app", "Уровень приложении"],
-    ["registration_date", "Дата регистрации"],
-    ["activity", "Активность"],
-    ["is_banned", "Статус"],
-  ];
+export const UserHeaders = {
+  id: "ID",
+  name: "Имя",
+  email: "Email",
+  phone_number: "Номер телефона",
+  coin_count: "Количество монет",
+  subscription_type: "Тип подписки",
+  xp: "Количество опыта",
+  joined_date: "Дата регистрации",
+  activity: "Активность",
+  is_banned: "Статус",
 };
 
 export type UserActivityProps = {
   user_id: number;
-  activity: Array<any>;
+};
+
+export type UserActivity = {
+  action: string;
+  action_type: string;
+  action_description: string;
+  action_datetime: string;
+};
+
+export const UserActivityHeaders = {
+  action: "Действие",
+  action_type: "Тип действия",
+  action_description: "Описание",
+  action_datetime: "Время",
 };

@@ -5,59 +5,65 @@ import Accordion from "react-bootstrap/Accordion";
 import { WebSocketContext } from "~/app/providers";
 import { CreateModal, Shelv } from "~/widgets";
 import { Table } from "~/shared/ui";
-import { apiInstance } from "~/shared/api";
+import { apiInstance, createResource } from "~/shared/api";
 import { dateToString, useSocket } from "~/shared/lib";
+
+const evnDataResourse = createResource("/api_admin/get_environmental_data/");
+const farmsResourse = createResource("/api_admin/get_farms/");
+const videosResourse = createResource("/api_admin/get_live_video_urls/");
 
 export default function PlantedSeeds() {
   const websocket = useContext(WebSocketContext);
-  const [envData, setEnvData] = useState<any>([]);
+  let translation: Record<string, string> = {
+    id: "id",
+    date: "Дата",
+    CO2: "CO2",
+    air_temperature: "Температура воздуха",
+    air_humidity: "Влажность воздуха",
+    UV_index: "Индекс УФ",
+    soil_humidity_1_centimeter: "Влажность почвы 1 сантиметр",
+    soil_humidity_1_5_centimeter: "Влажность почвы 1.5 сантиметра",
+  };
 
-  const [farmData, setFarmData] = useState<any>([]);
+  let responseData = evnDataResourse.read();
+  if (responseData && "date" in responseData) {
+    responseData.date = dateToString(responseData.date);
+  }
+  let translatedData: Record<string, string> = {};
+
+  for (let key in responseData) {
+    translatedData[translation[key]] = responseData[key];
+  } // @ts-ignore
+  const [envData, setEnvData] = useState<any>(translatedData);
+
+  const sortFarmData = (data: any) => {
+    data.message
+      .sort((a: any, b: any) => a.id - b.id)
+      .map((item: any) => {
+        let sortedShelves = item.real_life_shelves.map((shelf: any) => {
+          let sortedCells = shelf.real_life_farm_cells.sort(
+            (a: any, b: any) => a.id - b.id
+          );
+          return { ...shelf, real_life_farm_cells: sortedCells };
+        });
+        return { ...item, real_life_shelves: sortedShelves };
+      });
+    return data.message;
+  };
+  let farmResponseData = farmsResourse.read();
+  let sortedData = sortFarmData(farmResponseData);
+  const [farmData, setFarmData] = useState<any>(sortedData);
   const getFarms = () => {
     apiInstance.get("/api_admin/get_farms/").then((response) => {
-      let sortedData = response.data.message
-        .sort((a: any, b: any) => a.id - b.id)
-        .map((item: any) => {
-          let sortedShelves = item.real_life_shelves.map((shelf: any) => {
-            let sortedCells = shelf.real_life_farm_cells.sort(
-              (a: any, b: any) => a.id - b.id
-            );
-            return { ...shelf, real_life_farm_cells: sortedCells };
-          });
-          return { ...item, real_life_shelves: sortedShelves };
-        });
+      let sortedData = sortFarmData(response.data);
       setFarmData(sortedData);
     });
   };
+
   useEffect(() => {
     let isMounted = true;
 
     const fetchData = () => {
-      apiInstance.get("/api_admin/get_environmental_data/").then((response) => {
-        if (isMounted) {
-          let translation: Record<string, string> = {
-            id: "id",
-            date: "Дата",
-            CO2: "CO2",
-            air_temperature: "Температура воздуха",
-            air_humidity: "Влажность воздуха",
-            UV_index: "Индекс УФ",
-            soil_humidity_1_centimeter: "Влажность почвы 1 сантиметр",
-            soil_humidity_1_5_centimeter: "Влажность почвы 1.5 сантиметра",
-          };
-
-          let responseData = response.data;
-          responseData.date = dateToString(responseData.date);
-          let translatedData: Record<string, string> = {};
-
-          for (let key in responseData) {
-            translatedData[translation[key]] = responseData[key];
-          }
-
-          setEnvData(translatedData);
-        }
-      });
-      getFarms();
       const onClose = () => {
         if (isMounted) {
           toast.error("Сокет отключен. Перезагрузите страницу");
@@ -72,9 +78,7 @@ export default function PlantedSeeds() {
       isMounted = false;
     };
   }, []);
-  const videos = [
-    "https://www.youtube.com/embed/lwYzwdBiaho?si=WQND6Hhdtw3KpEFb",
-  ];
+  const videos: any[] = videosResourse.read().message;
 
   return (
     <>

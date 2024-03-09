@@ -1,15 +1,22 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { Analytics } from "~/widgets";
-import { apiInstance } from "~/shared/api";
+import { createResource } from "~/shared/api";
 import { DoughnutChart, Table } from "~/shared/ui";
 import { getStatsData, getTabData } from "~/shared/lib";
 
+const resource = createResource("/api_admin/get_order_statistics/");
+
 export default function OrderAnalytics() {
-  const [allData, setAllData] = useState({});
-  const [orderStats, setOrderStats] = useState<any[]>([]);
-  const [tabData, setTabData] = useState({});
+  let responseData = resource.read().message; //@ts-ignore
+  const [allData, setAllData] = useState(responseData); //@ts-ignore
+  const [orderStats, setOrderStats] = useState<any[]>(
+    getStatsData(responseData, "order_analytics")
+  );
   const [tabsOption, setTabsOption] = useState("Все");
+  const [tabData, setTabData] = useState(
+    getTabData(responseData, "order_analytics", tabsOption)
+  );
   const statsCols = [
     "День",
     "Неделя",
@@ -20,15 +27,6 @@ export default function OrderAnalytics() {
     "Оплачено",
     "Не оплачено",
   ];
-
-  useEffect(() => {
-    apiInstance.get("/api_admin/get_order_statistics/").then((response) => {
-      const responseData = response.data.message;
-      setAllData(responseData);
-      setOrderStats(getStatsData(responseData, "order_analytics"));
-      setTabData(getTabData(responseData, "order_analytics", tabsOption));
-    });
-  }, []);
 
   const tabs = [
     ...Object.entries(tabData).map(([key, dict]: any) => {

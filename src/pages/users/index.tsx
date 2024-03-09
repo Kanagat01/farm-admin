@@ -1,10 +1,11 @@
 import { useState, FC } from "react";
 
+import { UserActivityModal } from "~/widgets";
 import { ExportData, Mailing, BlockUser } from "~/features";
-import { User, getUserHeaders } from "~/entities/user";
+import { User, UserHeaders } from "~/entities/user";
 import { Table, Search, DropdownCategories } from "~/shared/ui";
 import { createResource } from "~/shared/api";
-import { UserActivity } from "~/widgets/UserActivity";
+import { dateToString } from "~/shared/lib";
 
 const resource = createResource("/api_admin/get_users/");
 
@@ -12,12 +13,10 @@ const UsersPage: FC = () => {
   const allData = resource.read();
   const [data, setData] = useState(allData);
 
-  const headers = [
-    ...getUserHeaders().map(([key, label]) => ({
-      label: label,
-      key: key,
-    })),
-  ];
+  const headers = Object.entries(UserHeaders).map(([key, label]) => ({
+    label: label,
+    key: key,
+  }));
 
   let columns = [...headers.map((header) => header.label)];
   let tableData = [
@@ -42,7 +41,9 @@ const UsersPage: FC = () => {
           } else if (header.key === "is_banned") {
             return <BlockUser user_id={obj.id} is_banned={obj.is_banned} />;
           } else if (header.key === "activity") {
-            return <UserActivity user_id={obj.id} activity={obj.activity} />;
+            return <UserActivityModal user_id={obj.id} />;
+          } else if (header.key === "joined_date") {
+            return dateToString(obj.joined_date);
           } else {
             // @ts-ignore
             return obj[header.key] || obj[header.key] === 0

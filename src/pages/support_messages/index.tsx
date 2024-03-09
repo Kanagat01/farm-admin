@@ -2,13 +2,16 @@ import { useEffect, useState, useContext } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { WebSocketContext } from "~/app/providers";
 import { ResolveModal } from "~/widgets";
-import { apiInstance } from "~/shared/api";
+import { apiInstance, createResource } from "~/shared/api";
 import { dateToString, useSocket } from "~/shared/lib";
 import { Table } from "~/shared/ui";
 
+const resource = createResource("/api_admin/get_support_messages/?page=1");
+
 export default function SupportMessages() {
   const websocket = useContext(WebSocketContext);
-  const [data, setData] = useState<any[]>([]);
+  const allData = resource.read().message;
+  const [data, setData] = useState<any[]>(allData);
 
   const removeObj = (message_id: number) => {
     setData(data.filter((obj: any) => obj.id !== message_id));
@@ -22,14 +25,14 @@ export default function SupportMessages() {
       apiInstance
         .get(`/api_admin/get_support_messages/?page=${page}`)
         .then((response) => {
-          if (page === 1) {
-            setData(response.data.message);
+          if (page === 2) {
             const onClose = () => {
               if (isMounted) {
                 toast.error("Сокет отключен. Перезагрузите страницу");
               }
             };
             useSocket(websocket, setData, onClose);
+            setData(response.data.message);
           } else {
             setData((prevData) => [...prevData, ...response.data.message]);
           }
@@ -44,7 +47,7 @@ export default function SupportMessages() {
         });
     };
 
-    fetchData(1);
+    fetchData(2);
 
     return () => {
       isMounted = false;

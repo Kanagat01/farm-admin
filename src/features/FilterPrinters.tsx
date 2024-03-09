@@ -11,7 +11,6 @@ export function FilterPrinters({ setData }: FilterPrintersProps) {
   const onClick = (option: string) => {
     setSelectedOption(option);
     setData((prevData) => [...prevData]);
-    console.log(option);
   };
   return (
     <DropdownCategories

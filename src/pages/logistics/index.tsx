@@ -5,18 +5,18 @@ import { WebSocketContext } from "~/app/providers";
 import { DeliverySentModal } from "~/widgets";
 import { apiInstance } from "~/shared/api";
 import { dateToString, useSocket } from "~/shared/lib";
-import { Table } from "~/shared/ui";
+import { Preloader, Table } from "~/shared/ui";
 import { CategoryFilter } from "~/features";
 
-export default function Orders() {
+export default function Logistics() {
   const websocket = useContext(WebSocketContext);
   const [allData, setAllData] = useState<any[]>([]);
   const [tableData, setTableData] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const [selectedOption, setSelectedOption] = useState("Все");
   const options = ["Все", "Ферма", "3D"];
-  const ordersFilter = (e: any) => {
-    let optionText = e.target.innerText;
+  const ordersFilter = (optionText: string) => {
     setSelectedOption(optionText);
     let newData;
     if (optionText === "Ферма") {
@@ -73,6 +73,7 @@ export default function Orders() {
               });
             };
             useSocket(websocket, addNewData, onClose);
+            setIsLoading(false);
           } else {
             setAllData((prevData) => [...prevData, ...responseData]);
             setTableData((prevData) => [...prevData, ...tableData]);
@@ -124,7 +125,9 @@ export default function Orders() {
     "Отправлено",
   ];
 
-  return (
+  return isLoading ? (
+    <Preloader />
+  ) : (
     <>
       <ToastContainer />
       <div className="table-title my-4">Информация о доставках</div>

@@ -38,9 +38,11 @@ export function PrintedModal({ id, printerObj, removeObj }: any) {
       </a>
 
       <Modal show={showModal[id]} onHide={changeModal}>
-        <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
-          <h2 className="title-md mb-0 text-center">
+          <h2
+            className="title-md p-3 mb-0 text-center"
+            style={{ fontSize: "2rem" }}
+          >
             Вы уверены, что модель {model_name} готово?
           </h2>
         </Modal.Body>

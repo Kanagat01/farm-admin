@@ -6,6 +6,7 @@ interface EmailInputProps
   name: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   show?: boolean;
+  show_feedback?: boolean;
 }
 
 export const EmailInput: FC<EmailInputProps> = (props) => {
@@ -37,9 +38,13 @@ export const EmailInput: FC<EmailInputProps> = (props) => {
           }`}
           onChange={emailOnChange}
         />
-        <div className="invalid-feedback" style={{ fontSize: "1.4rem" }}>
-          Пожалуйста, введите корректный email.
-        </div>
+        {props.show_feedback !== false ? (
+          <div className="invalid-feedback" style={{ fontSize: "1.4rem" }}>
+            Пожалуйста, введите корректный email.
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
