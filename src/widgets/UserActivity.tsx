@@ -4,9 +4,9 @@ import {
   UserActivityProps,
   UserActivity,
   UserActivityHeaders,
+  getUserActivityData,
 } from "~/entities";
 import { apiInstance } from "~/shared/api";
-import { dateToString } from "~/shared/lib";
 import { Preloader, Table } from "~/shared/ui";
 
 export function UserActivityModal({ user_id }: UserActivityProps) {
@@ -22,17 +22,7 @@ export function UserActivityModal({ user_id }: UserActivityProps) {
         user_profile_id: user_id,
       })
       .then((response) => {
-        setData(
-          response.data.message.map((activity: UserActivity) =>
-            Object.keys(UserActivityHeaders).map((key) => {
-              if (key === "action_datetime") {
-                return dateToString(activity[key]);
-              }
-              //@ts-ignore
-              return activity[key];
-            })
-          )
-        );
+        setData(getUserActivityData(response.data.message));
         setIsLoading(false);
       });
   }, []);

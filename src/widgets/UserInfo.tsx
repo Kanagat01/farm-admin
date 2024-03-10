@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import {
   User,
-  UserActivity,
   UserActivityHeaders,
   UserHeaders,
+  getUserActivityData,
 } from "~/entities";
 import { apiInstance } from "~/shared/api";
 import { dateToString } from "~/shared/lib";
@@ -12,24 +12,14 @@ import { Input, Table } from "~/shared/ui";
 
 export function UserInfo({ id, user }: { id: number; user: User }) {
   const [showModal, setShowModal] = useState<Record<number, boolean>>({});
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<any[][]>([]);
   useEffect(() => {
     apiInstance
       .post("/api_admin/get_user_actions/", {
         user_profile_id: user.id,
       })
       .then((response) => {
-        setData(
-          response.data.message.map((activity: UserActivity) =>
-            Object.keys(UserActivityHeaders).map((key) => {
-              if (key === "action_datetime") {
-                return dateToString(activity[key]);
-              }
-              //@ts-ignore
-              return activity[key];
-            })
-          )
-        );
+        setData(getUserActivityData(response.data.message));
       });
   }, []);
   const changeModal = () => {

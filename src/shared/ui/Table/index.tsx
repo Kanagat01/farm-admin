@@ -11,16 +11,21 @@ export const Table: React.FC<TableProps> = ({ columns, data }) => {
   const itemsPerPage = 10;
 
   const pages = Math.ceil(data.length / itemsPerPage);
-  let pageNums = Array.from({ length: Math.min(11, pages) }, (_, i) => {
-    if (currentPage >= 6) {
-      if (currentPage + 5 >= pages) {
-        return pages - 10 + i;
-      }
-      return currentPage - 5 + i;
+  let pageNums;
+  if (pages <= 11) {
+    pageNums = Array.from({ length: pages }, (_, index) => index + 1);
+  } else {
+    if (pages - currentPage <= 5) {
+      pageNums = Array.from({ length: 11 }, (_, index) => index + pages - 10);
+    } else if (currentPage <= 6) {
+      pageNums = Array.from({ length: 11 }, (_, index) => index + 1);
     } else {
-      return i + 1;
+      pageNums = Array.from(
+        { length: 11 },
+        (_, index) => index + currentPage - 5
+      );
     }
-  });
+  }
 
   const dataIndex = (currentPage - 1) * itemsPerPage;
   const currentItems = data.slice(dataIndex, dataIndex + itemsPerPage);

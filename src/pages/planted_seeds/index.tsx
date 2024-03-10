@@ -9,19 +9,30 @@ import { apiInstance, createResource } from "~/shared/api";
 import { dateToString, useSocket } from "~/shared/lib";
 import { envDataTranslation } from "~/entities";
 
-const evnDataResourse = createResource("/api_admin/get_environmental_data/");
+// const evnDataResourse = createResource("/api_admin/get_environmental_data/");
 const farmsResourse = createResource("/api_admin/get_farms/");
 const videosResourse = createResource("/api_admin/get_live_video_urls/");
 
 export default function PlantedSeeds() {
   const websocket = useContext(WebSocketContext);
-  let responseData = evnDataResourse.read();
+  // let responseData = evnDataResourse.read();
+  let responseData = {
+    id: 1,
+    date: "2024-03-10",
+    CO2: 0,
+    air_temperature: 0,
+    air_humidity: 0,
+    UV_index: 0,
+    soil_humidity_1_centimeter: 0,
+    soil_humidity_1_5_centimeter: 0,
+  };
   if (responseData && "date" in responseData) {
     responseData.date = dateToString(responseData.date);
   }
   let translatedData: Record<string, string> = {};
 
   for (let key in responseData) {
+    // @ts-ignore
     translatedData[envDataTranslation[key]] = responseData[key];
   } // @ts-ignore
   const [envData, setEnvData] = useState<any>(translatedData);
@@ -69,7 +80,8 @@ export default function PlantedSeeds() {
       isMounted = false;
     };
   }, []);
-  const videos: any[] = videosResourse.read().message;
+
+  const videos: any[] = [videosResourse.read().message]; // в момент написания кода, отправлялось в виде строки, хотя должен быть в виде списка
 
   return (
     <>

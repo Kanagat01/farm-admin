@@ -115,7 +115,7 @@ export default function Logistics() {
   };
 
   const orderCols = [
-    "ID",
+    "ID доставки",
     "Имя покупателя",
     "Номер телефона",
     "Адрес доставки",
