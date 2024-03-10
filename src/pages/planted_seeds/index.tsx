@@ -23,19 +23,16 @@ export default function PlantedSeeds() {
     air_temperature: 0,
     air_humidity: 0,
     UV_index: 0,
-    soil_humidity_1_centimeter: 0,
-    soil_humidity_1_5_centimeter: 0,
   };
   if (responseData && "date" in responseData) {
     responseData.date = dateToString(responseData.date);
   }
-  let translatedData: Record<string, string> = {};
+  let envData: Record<string, string> = {};
 
   for (let key in responseData) {
     // @ts-ignore
-    translatedData[envDataTranslation[key]] = responseData[key];
-  } // @ts-ignore
-  const [envData, setEnvData] = useState<any>(translatedData);
+    envData[envDataTranslation[key]] = responseData[key];
+  }
 
   const sortFarmData = (data: any) => {
     data.message
