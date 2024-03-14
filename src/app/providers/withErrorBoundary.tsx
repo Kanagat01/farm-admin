@@ -22,16 +22,13 @@ function ErrorContainer({ error }: ErrorContainerProps) {
   return (
     <div className="error-container">
       <h1 className="display-1 error-heading">
-        {isAxiosError ? error.response?.status : error?.status || "404"}
+        {isAxiosError ? error.response?.status : error?.status}
       </h1>
       <h2 className="error-code">
-        {isAxiosError ? error.code : error?.statusText || "Not found"}
+        {isAxiosError ? error.code : error?.statusText || "Неизвестная ошибка"}
       </h2>
       <p className="error-message">
-        {isAxiosError
-          ? error.message
-          : error?.data ||
-            "The page you are looking for might have been removed had its name changed or is temporarily unavailable."}
+        {isAxiosError ? error.message : error?.data}
       </p>
       <a href="/" className="btn btn-primary">
         Вернуться на главную

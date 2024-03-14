@@ -90,7 +90,11 @@ export default function PlantedSeeds() {
         {videos.map((link, key) => (
           <div key={key} className="col-md-4 col-sm-6 col-12 mb-4">
             <div className="responsive-container">
-              <video width="560" height="315" controls autoPlay>
+              <video
+                controls
+                autoPlay
+                style={{ width: "100%", height: "100%" }}
+              >
                 <source src={link} type="video/mp4" />
               </video>
             </div>

@@ -6,6 +6,21 @@ import { AuthContext } from "~/app/providers";
 import { Preloader } from "~/shared/ui";
 import SuccessPayment from "./success_payment";
 
+const NotFound = () => {
+  type ErrorWithStatus = Error & {
+    status?: number;
+    statusText?: string;
+    data?: string;
+  };
+  const error = new Error() as ErrorWithStatus;
+  error.status = 404;
+  error.statusText = "Страница не найдена";
+  error.data =
+    "Возможно, страница, которую вы ищете, была удалена, ее название изменилось или она временно недоступна.";
+
+  throw error;
+};
+
 const PrivateRoute = () => {
   const { isAuthenticated } = useContext(AuthContext);
   const location = useLocation();
@@ -80,7 +95,7 @@ export const Routing = () => {
           />
         ))}
       </Route>
-      <Route path="*" element={<Navigate to="/" replace />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };
