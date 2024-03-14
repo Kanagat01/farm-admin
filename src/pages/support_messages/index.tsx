@@ -9,7 +9,7 @@ import { Table } from "~/shared/ui";
 const resource = createResource("/api_admin/get_support_messages/?page=1");
 
 export default function SupportMessages() {
-  const websocket = useContext(WebSocketContext);
+  const { socket } = useContext(WebSocketContext);
   const allData = resource.read().message;
   const [data, setData] = useState<any[]>(allData);
 
@@ -18,6 +18,13 @@ export default function SupportMessages() {
   };
 
   useEffect(() => {
+    const onClose = () => {
+      if (isMounted) {
+        toast.error("Сокет отключен. Перезагрузите страницу");
+      }
+    };
+    useSocket(socket, setData, onClose);
+
     let isMounted = true;
     let loadPages = true;
 
@@ -25,17 +32,7 @@ export default function SupportMessages() {
       apiInstance
         .get(`/api_admin/get_support_messages/?page=${page}`)
         .then((response) => {
-          if (page === 2) {
-            const onClose = () => {
-              if (isMounted) {
-                toast.error("Сокет отключен. Перезагрузите страницу");
-              }
-            };
-            useSocket(websocket, setData, onClose);
-            setData(response.data.message);
-          } else {
-            setData((prevData) => [...prevData, ...response.data.message]);
-          }
+          setData((prevData) => [...prevData, ...response.data.message]);
           if (loadPages) {
             fetchData(page + 1);
           }

@@ -10,7 +10,7 @@ import { Printer, PrinterHeaders } from "~/entities";
 const resource = createResource("/api_admin/get_printer_requests/?page=1");
 
 export default function Printers() {
-  const websocket = useContext(WebSocketContext);
+  const { socket } = useContext(WebSocketContext);
   let firstPageData = resource.read().message;
 
   const [data, setData] = useState<any[]>(firstPageData);
@@ -19,6 +19,13 @@ export default function Printers() {
   };
 
   useEffect(() => {
+    const onClose = () => {
+      if (isMounted) {
+        toast.error("Сокет отключен. Перезагрузите страницу");
+      }
+    };
+    useSocket(socket, setData, onClose);
+
     let isMounted = true;
     let loadPages = true;
 
@@ -27,17 +34,7 @@ export default function Printers() {
         .get(`/api_admin/get_printer_requests/?page=${page}`)
         .then((response) => {
           let responseData: any[] = response.data.message;
-          if (page === 2) {
-            const onClose = () => {
-              if (isMounted) {
-                toast.error("Сокет отключен. Перезагрузите страницу");
-              }
-            };
-            useSocket(websocket, setData, onClose);
-            setData(responseData);
-          } else {
-            setData((prevData) => [...prevData, ...responseData]);
-          }
+          setData((prevData) => [...prevData, ...responseData]);
           if (responseData.length < 40) {
             loadPages = false;
           }

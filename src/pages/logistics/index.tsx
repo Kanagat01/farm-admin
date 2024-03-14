@@ -9,7 +9,7 @@ import { Preloader, Table } from "~/shared/ui";
 import { CategoryFilter } from "~/features";
 
 export default function Logistics() {
-  const websocket = useContext(WebSocketContext);
+  const { socket } = useContext(WebSocketContext);
   const [allData, setAllData] = useState<any[]>([]);
   const [tableData, setTableData] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -72,7 +72,7 @@ export default function Logistics() {
                 return currentOption;
               });
             };
-            useSocket(websocket, addNewData, onClose);
+            useSocket(socket, addNewData, onClose);
             setIsLoading(false);
           } else {
             setAllData((prevData) => [...prevData, ...responseData]);

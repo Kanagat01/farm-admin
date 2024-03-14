@@ -14,7 +14,7 @@ const farmsResourse = createResource("/api_admin/get_farms/");
 const videosResourse = createResource("/api_admin/get_live_video_urls/");
 
 export default function PlantedSeeds() {
-  const websocket = useContext(WebSocketContext);
+  const { socket } = useContext(WebSocketContext);
   // let responseData = evnDataResourse.read();
   let responseData = {
     id: 1,
@@ -68,7 +68,7 @@ export default function PlantedSeeds() {
           toast.error("Сокет отключен. Перезагрузите страницу");
         }
       };
-      useSocket(websocket, setFarmData, onClose);
+      useSocket(socket, setFarmData, onClose);
     };
 
     fetchData();

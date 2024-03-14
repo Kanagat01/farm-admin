@@ -1,25 +1,13 @@
 import { lazy, ComponentType, useContext, Suspense } from "react";
 import { Routes, Route, Navigate, Outlet, useLocation } from "react-router-dom";
-import { routes, permissions } from "~/shared/router";
-import { Footer, Header, NotAccessed, Sidebar } from "~/widgets";
+
 import { AuthContext } from "~/app/providers";
+import { Footer, Header, NotAccessed, Sidebar } from "~/widgets";
+import { routes, permissions } from "~/shared/router";
 import { Preloader } from "~/shared/ui";
+
 import SuccessPayment from "./success_payment";
-
-const NotFound = () => {
-  type ErrorWithStatus = Error & {
-    status?: number;
-    statusText?: string;
-    data?: string;
-  };
-  const error = new Error() as ErrorWithStatus;
-  error.status = 404;
-  error.statusText = "Страница не найдена";
-  error.data =
-    "Возможно, страница, которую вы ищете, была удалена, ее название изменилось или она временно недоступна.";
-
-  throw error;
-};
+import NotFound from "./not_found";
 
 const PrivateRoute = () => {
   const { isAuthenticated } = useContext(AuthContext);
@@ -37,6 +25,10 @@ function withLayout(currentRoute: string, ComponentName: ComponentType) {
   if (currentRoute in permissions) {
     hasAccess = localStorage.getItem(permissions[currentRoute]) === "true";
   }
+  if (Notification.permission !== "granted") {
+    Notification.requestPermission().then((perm) => console.log(perm));
+  }
+
   return (
     <>
       <Header />
