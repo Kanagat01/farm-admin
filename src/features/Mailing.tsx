@@ -155,6 +155,7 @@ export const Mailing = () => {
       value={userMail}
       onChange={onChangeEmail}
       onKeyDown={handleKeyPress}
+      autoComplete="off"
       show={mailingObj.type === "specific"}
       show_feedback={false}
     />,

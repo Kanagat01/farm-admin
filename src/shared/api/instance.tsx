@@ -36,7 +36,9 @@ apiInstance.interceptors.request.use((config) => {
               localStorage.setItem("refresh_token", response.data.refresh);
             })
             .catch((error) => {
-              console.log(error);
+              if (![401, 403, 404].includes(error.response?.status)) {
+                throw error;
+              }
             });
         }
       }

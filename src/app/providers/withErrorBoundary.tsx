@@ -1,3 +1,4 @@
+import axios, { AxiosError } from "axios";
 import React, { Component, ComponentType, ErrorInfo } from "react";
 
 type ErrorWithStatus = Error & {
@@ -12,22 +13,25 @@ type ErrorContainerProps = {
 
 type ErrorBoundaryState = {
   hasError: boolean;
-  error: ErrorWithStatus | null;
+  error: ErrorWithStatus | AxiosError | null;
 };
 
 function ErrorContainer({ error }: ErrorContainerProps) {
+  const isAxiosError = axios.isAxiosError(error);
+
   return (
     <div className="error-container">
       <h1 className="display-1 error-heading">
-        {error?.status ? error.status : "404"}
+        {isAxiosError ? error.response?.status : error?.status || "404"}
       </h1>
       <h2 className="error-code">
-        {error?.statusText ? error.statusText : "Not found"}
+        {isAxiosError ? error.code : error?.statusText || "Not found"}
       </h2>
       <p className="error-message">
-        {error?.data
-          ? error.data
-          : "The page you are looking for might have been removed had its name changed or is temporarily unavailable."}
+        {isAxiosError
+          ? error.message
+          : error?.data ||
+            "The page you are looking for might have been removed had its name changed or is temporarily unavailable."}
       </p>
       <a href="/" className="btn btn-primary">
         Вернуться на главную
