@@ -8,6 +8,10 @@ import { Preloader } from "~/shared/ui";
 
 import SuccessPayment from "./success_payment";
 import NotFound from "./not_found";
+import Logistics from "./logistics";
+import SupportMessages from "./support_messages";
+import PlantedSeeds from "./planted_seeds";
+import Printers from "./printers";
 
 const PrivateRoute = () => {
   const { isAuthenticated } = useContext(AuthContext);
@@ -50,12 +54,8 @@ function withLayout(currentRoute: string, ComponentName: ComponentType) {
 const MainPage = lazy(() => import("./main"));
 const UsersPage = lazy(() => import("./users"));
 const LoginPage = lazy(() => import("./login"));
-const PlantedSeeds = lazy(() => import("./planted_seeds"));
-const Printers = lazy(() => import("./printers"));
 const Marketplace = lazy(() => import("./marketplace"));
 const Orders = lazy(() => import("./orders"));
-const Logistics = lazy(() => import("./logistics"));
-const SupportMessages = lazy(() => import("./support_messages"));
 
 export const Routing = () => {
   const routeElements: Array<[string, ComponentType]> = [
