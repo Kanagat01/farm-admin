@@ -27,6 +27,8 @@ export function Header() {
     setShowLogoutModal(false);
   };
   const handleLogout = () => {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
     setAuth(false);
     setShowLogoutModal(false);
   };
