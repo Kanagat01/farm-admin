@@ -1,4 +1,4 @@
-import { lazy, ComponentType, useContext, Suspense } from "react";
+import { lazy, ComponentType, useContext, Suspense, useEffect } from "react";
 import { Routes, Route, Navigate, Outlet, useLocation } from "react-router-dom";
 
 import { AuthContext } from "~/app/providers";
@@ -24,9 +24,6 @@ function withLayout(currentRoute: string, ComponentName: ComponentType) {
   let hasAccess = true;
   if (currentRoute in permissions) {
     hasAccess = localStorage.getItem(permissions[currentRoute]) === "true";
-  }
-  if (Notification.permission !== "granted") {
-    Notification.requestPermission().then((perm) => console.log(perm));
   }
 
   return (
@@ -71,6 +68,16 @@ export const Routing = () => {
     [routes.LOGISTICS_ROUTE, Logistics],
     [routes.SUPPORT_MESSAGES_ROUTE, SupportMessages],
   ];
+
+  useEffect(() => {
+    if ("serviceWorker" in navigator && "Notification" in window) {
+      navigator.serviceWorker.register("./sw.js").then(function () {
+        console.log("Service Worker Registered");
+      });
+      Notification.requestPermission();
+    }
+  }, []);
+
   return (
     <Routes>
       <Route

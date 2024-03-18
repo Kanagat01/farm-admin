@@ -23,14 +23,18 @@ export const useSocket = (websocket: any, setData: any, socketOnClose: any) => {
       setData((prevData: any) => [...prevData, event_data.data]);
       if (Notification.permission === "granted") {
         if (event_data.type === "new_support_message") {
-          new Notification(
-            `Новое сообщение в поддержку #${event_data.data.id}`,
-            { body: event_data.data.message }
-          );
+          navigator.serviceWorker.ready.then(function (registration): void {
+            registration.showNotification(
+              `Новое сообщение в поддержку #${event_data.data.id}`,
+              { body: event_data.data.message }
+            );
+          });
         } else {
-          new Notification(
-            `Новый заказ в 3D #${event_data.data.printing_model_id}!`
-          );
+          navigator.serviceWorker.ready.then(function (registration): void {
+            registration.showNotification(
+              `Новый заказ в 3D #${event_data.data.printing_model_id}!`
+            );
+          });
         }
       }
     } else if (event_data.type === "new_farm_planted_seed") {
@@ -68,14 +72,20 @@ export const useSocket = (websocket: any, setData: any, socketOnClose: any) => {
         }
       });
       if (Notification.permission === "granted") {
-        new Notification("Новый заказ в ферму!", {
-          body: `Ферма ${event_data.data.farm_id}, id ячейки: ${event_data.data.id}`,
+        navigator.serviceWorker.ready.then(function (registration): void {
+          registration.showNotification("Новый заказ в ферму!", {
+            body: `Ферма ${event_data.data.farm_id}, id ячейки: ${event_data.data.id}`,
+          });
         });
       }
     } else if (event_data.type === "new_delivery_order") {
       setData(event_data.data);
       if (Notification.permission === "granted") {
-        new Notification(`Новый запрос на доставку #${event_data.data.id}`);
+        navigator.serviceWorker.ready.then(function (registration): void {
+          registration.showNotification(
+            `Новый запрос на доставку #${event_data.data.id}`
+          );
+        });
       }
     }
   };

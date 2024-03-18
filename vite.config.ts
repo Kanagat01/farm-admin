@@ -10,4 +10,11 @@ export default defineConfig({
       '~': path.resolve(__dirname, './src'),
     },
   },
+  // server: {
+  //   https: {
+  //     key: "./farm-admin-privateKey.key",
+  //     cert: "./farm-admin.crt"
+  //   },
+  //   host: '0.0.0.0',
+  // },
 })

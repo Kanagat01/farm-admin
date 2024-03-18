@@ -25,6 +25,7 @@
     "react-toastify": "^10.0.4"
   },
   "devDependencies": {
+    "@types/bootstrap": "^5.2.10",
     "@types/compose-function": "^0.0.33",
     "@types/node": "^20.11.19",
     "@types/react": "^18.2.55",
