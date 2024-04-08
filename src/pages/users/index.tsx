@@ -8,22 +8,20 @@ import { createResource } from "~/shared/api";
 import { dateToString } from "~/shared/lib";
 
 const resource = createResource("/api_admin/get_users/");
+const surveyResource = createResource("/api_admin/get_survey_data/");
 
 const UsersPage: FC = () => {
+  const surveyData: any[][] = surveyResource.read().message;
   const allData = resource.read();
+
   const [data, setData] = useState(allData);
 
-  const headers = Object.entries(UserHeaders).map(([key, label]) => ({
-    label: label,
-    key: key,
-  }));
-
-  let columns = [...headers.map((header) => header.label)];
+  let columns = [...Object.values(UserHeaders).map((column) => column)];
   let tableData = [
     ...data.map((obj: User) => {
       return [
-        ...headers.map((header) => {
-          if (header.key === "subscription_type") {
+        ...Object.keys(UserHeaders).map((field_name) => {
+          if (field_name === "subscription_type") {
             let subs_types = {
               PR: { prefix: "premium", label: "Премиум" },
               TE: { prefix: "testing", label: "Тестовый" },
@@ -38,17 +36,17 @@ const UsersPage: FC = () => {
                 {subs_types[obj.subscription_type].label}
               </div>
             );
-          } else if (header.key === "is_banned") {
+          } else if (field_name === "is_banned") {
             return <BlockUser user_id={obj.id} is_banned={obj.is_banned} />;
-          } else if (header.key === "activity") {
+          } else if (field_name === "activity") {
             return <UserActivityModal user_id={obj.id} />;
-          } else if (header.key === "joined_date") {
+          } else if (field_name === "joined_date") {
             return dateToString(obj.joined_date);
           } else {
             // @ts-ignore
-            return obj[header.key] || obj[header.key] === 0
+            return obj[field_name] || obj[field_name] === 0
               ? // @ts-ignore
-                obj[header.key]
+                obj[field_name]
               : "Отсутствует";
           }
         }),
@@ -101,7 +99,12 @@ const UsersPage: FC = () => {
           className="rounded-btn py-2"
         />
         <Mailing />
-        <ExportData data={data} headers={headers} />
+        <ExportData data={data} headers={columns} text="Экспортировать" />
+        <ExportData
+          data={surveyData.slice(1)}
+          headers={surveyData[0]}
+          text="Результаты опроса"
+        />
       </div>
       <Table columns={columns} data={tableData} />
     </>
