@@ -25,7 +25,7 @@ export function UserActivityModal({ user_id }: UserActivityProps) {
         setData(getUserActivityData(response.data.message));
         setIsLoading(false);
       });
-  }, []);
+  }, [user_id]);
   return (
     <>
       <a className="table-link" onClick={changeModal}>
