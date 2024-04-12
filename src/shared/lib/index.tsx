@@ -65,6 +65,9 @@ export const useSocket = (websocket: any, setData: any, socketOnClose: any) => {
               ...farm_obj.real_life_shelves[shelf_idx].real_life_farm_cells,
               cell_info,
             ].sort((a, b) => a.id - b.id);
+            farm_obj.real_life_shelves = farm_obj.real_life_shelves.sort(
+              (a: any, b: any) => a.id - b.id
+            );
           }
           return [...prevData, farm_obj].sort((a, b) => a.id - b.id);
         } else {
