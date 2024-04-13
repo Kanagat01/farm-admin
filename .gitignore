@@ -25,7 +25,4 @@ dist-ssr
 
 # Environment Variables
 .env
-
-# self signed ssl
-farm-admin.crt
-farm-admin-privateKey.key
+мануал_к_админке.docx

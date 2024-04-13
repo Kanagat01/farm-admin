@@ -61,18 +61,23 @@ const UsersPage: FC = () => {
   };
   const [filterOption, setFilterOption] = useState(filter.selectedOption);
   const filterData = (optionText: string, inputValue: string) => {
+    inputValue = inputValue.toLowerCase();
     const SubscriptionTypes = {
       Стандарт: "ST",
       Тестовый: "TE",
       Премиум: "PR",
     };
     if (optionText === "Все" || optionText === "Выберите тип подписки") {
-      setData(allData.filter((obj: any) => obj.name.includes(inputValue)));
+      setData(
+        allData.filter((obj: User) =>
+          obj.name.toLowerCase().includes(inputValue)
+        )
+      );
     } else {
       setData(
         allData.filter(
-          (obj: any) =>
-            obj.name.includes(inputValue) && // @ts-ignore
+          (obj: User) =>
+            obj.name.toLowerCase().includes(inputValue) && // @ts-ignore
             obj.subscription_type === SubscriptionTypes[optionText]
         )
       );

@@ -38,12 +38,14 @@ export default function PlantedSeeds() {
     data.message
       .sort((a: any, b: any) => a.id - b.id)
       .map((item: any) => {
-        let sortedShelves = item.real_life_shelves.map((shelf: any) => {
-          let sortedCells = shelf.real_life_farm_cells.sort(
-            (a: any, b: any) => a.id - b.id
-          );
-          return { ...shelf, real_life_farm_cells: sortedCells };
-        });
+        let sortedShelves = item.real_life_shelves
+          .map((shelf: any) => {
+            let sortedCells = shelf.real_life_farm_cells.sort(
+              (a: any, b: any) => a.id - b.id
+            );
+            return { ...shelf, real_life_farm_cells: sortedCells };
+          })
+          .sort((a: any, b: any) => a.id - b.id);
         return { ...item, real_life_shelves: sortedShelves };
       });
     return data.message;
