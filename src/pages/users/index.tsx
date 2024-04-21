@@ -16,7 +16,6 @@ const UsersPage: FC = () => {
 
   const [data, setData] = useState(allData);
 
-  let columns = [...Object.values(UserHeaders).map((column) => column)];
   let tableData = [
     ...data.map((obj: User) => {
       return [
@@ -53,6 +52,32 @@ const UsersPage: FC = () => {
       ];
     }),
   ];
+  const exportUserData = data.map((obj: User) => {
+    return [
+      ...Object.keys(UserHeaders)
+        .filter((el) => el !== "activity")
+        .map((field_name) => {
+          if (field_name === "subscription_type") {
+            return obj.subscription_type === "PR"
+              ? "Премиум"
+              : obj.subscription_type === "ST"
+              ? "Стандарт"
+              : "Тестовый";
+          } else if (field_name === "is_banned") {
+            return obj.is_banned ? "Заблокирован" : "Активен";
+          } else if (field_name === "joined_date") {
+            return dateToString(obj.joined_date);
+          } else {
+            // @ts-ignore
+            return obj[field_name] || obj[field_name] === 0
+              ? // @ts-ignore
+                obj[field_name]
+              : "Отсутствует";
+          }
+        }),
+    ];
+  });
+
   const [searchText, setSearchText] = useState("");
 
   const filter = {
@@ -67,21 +92,20 @@ const UsersPage: FC = () => {
       Тестовый: "TE",
       Премиум: "PR",
     };
-    if (optionText === "Все" || optionText === "Выберите тип подписки") {
-      setData(
-        allData.filter((obj: User) =>
-          obj.name.toLowerCase().includes(inputValue)
-        )
-      );
-    } else {
-      setData(
-        allData.filter(
-          (obj: User) =>
-            obj.name.toLowerCase().includes(inputValue) && // @ts-ignore
-            obj.subscription_type === SubscriptionTypes[optionText]
-        )
+    let newData = allData.filter((obj: User) => {
+      if (!isNaN(Number(inputValue)) && inputValue != "") {
+        return obj.id === Number(inputValue);
+      }
+      return obj.name.toLowerCase().includes(inputValue);
+    });
+    if (!["Все", "Выберите тип подписки"].includes(optionText)) {
+      newData = newData.filter(
+        (
+          obj: User // @ts-ignore
+        ) => obj.subscription_type === SubscriptionTypes[optionText]
       );
     }
+    setData(newData);
     setFilterOption(optionText);
     setSearchText(inputValue);
   };
@@ -93,7 +117,7 @@ const UsersPage: FC = () => {
         style={{ gap: "1rem" }}
       >
         <Search
-          placeholder="Искать по Имени"
+          placeholder="Искать по ID или Имени"
           value={searchText}
           onChange={(e) => filterData(filterOption, e.target.value)}
         />
@@ -104,14 +128,20 @@ const UsersPage: FC = () => {
           className="rounded-btn py-2"
         />
         <Mailing />
-        <ExportData data={data} headers={columns} text="Экспортировать" />
+        <ExportData
+          data={exportUserData}
+          headers={Object.values(UserHeaders).filter(
+            (el) => el !== "Активность"
+          )}
+          text="Экспортировать"
+        />
         <ExportData
           data={surveyData.slice(1)}
           headers={surveyData[0]}
           text="Результаты опроса"
         />
       </div>
-      <Table columns={columns} data={tableData} />
+      <Table columns={Object.values(UserHeaders)} data={tableData} />
     </>
   );
 };

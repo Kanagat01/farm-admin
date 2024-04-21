@@ -1,6 +1,6 @@
-export * from "./Footer"
-export * from "./Header"
-export * from "./Sidebar"
+export * from "./Footer";
+export * from "./Header";
+export * from "./Sidebar";
 export * from "./NotAccessed";
 export * from "./ResolveModal";
 export * from "./CreateModal";
@@ -14,3 +14,5 @@ export * from "./ModelInfo";
 export * from "./UserInfo";
 export * from "./Purchases";
 export * from "./MarketplaceTrends";
+export * from "./FarmStats";
+export * from "./PrinterStats";

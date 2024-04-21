@@ -33,11 +33,15 @@ export function Analytics({
                 borderTopLeftRadius: 0,
               }}
             >
-              <DropdownCategories
-                options={options}
-                selectedOption={selectedOption}
-                onClick={onChange}
-              />
+              {selectedOption ? (
+                <DropdownCategories
+                  options={options}
+                  selectedOption={selectedOption}
+                  onClick={onChange}
+                />
+              ) : (
+                ""
+              )}
               <LineChart
                 label={label}
                 labels={el.labels}

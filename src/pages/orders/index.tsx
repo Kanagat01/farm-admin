@@ -1,21 +1,19 @@
 import { useState } from "react";
 
-import { Analytics } from "~/widgets";
+import { Analytics, FarmStats, PrinterStats } from "~/widgets";
 import { createResource } from "~/shared/api";
 import { DoughnutChart, Table } from "~/shared/ui";
 import { getStatsData, getTabData } from "~/shared/lib";
 
-const resource = createResource("/api_admin/get_order_statistics/");
+const orderStatsResource = createResource("/api_admin/get_order_statistics/");
 
 export default function OrderAnalytics() {
-  let responseData = resource.read().message; //@ts-ignore
-  const [allData, setAllData] = useState(responseData); //@ts-ignore
-  const [orderStats, setOrderStats] = useState<any[]>(
-    getStatsData(responseData, "order_analytics")
-  );
+  const allData = orderStatsResource.read().message;
+
+  const orderStats = getStatsData(allData, "order_analytics");
   const [tabsOption, setTabsOption] = useState("Все");
   const [tabData, setTabData] = useState(
-    getTabData(responseData, "order_analytics", tabsOption)
+    getTabData(allData, "order_analytics", tabsOption)
   );
   const statsCols = [
     "День",
@@ -56,9 +54,9 @@ export default function OrderAnalytics() {
 
   return (
     <>
+      {/* Common */}
       <div className="table-title my-4">Количество заказов</div>
       <Table columns={statsCols} data={[orderStats]} />
-
       <Analytics
         title="Количество заказов в графиках"
         label="Количество заказов"
@@ -66,7 +64,6 @@ export default function OrderAnalytics() {
         selectedOption={tabsOption}
         onChange={tabsOnChange}
       />
-
       <div className="chart-block mt-5">
         <div className="row">
           {pie_charts.map((el, index) => (
@@ -76,6 +73,9 @@ export default function OrderAnalytics() {
           ))}
         </div>
       </div>
+
+      <FarmStats />
+      <PrinterStats />
     </>
   );
 }
