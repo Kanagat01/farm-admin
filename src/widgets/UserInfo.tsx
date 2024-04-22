@@ -57,7 +57,7 @@ export function UserInfo({ id, user }: { id: number; user: User }) {
               }
             }
           })}
-          <div
+          {/* <div
             style={{
               background: "var(--form-control-bg)",
               padding: "2rem",
@@ -70,7 +70,7 @@ export function UserInfo({ id, user }: { id: number; user: User }) {
               Активность
             </div>
             <Table columns={Object.values(UserActivityHeaders)} data={data} />
-          </div>
+          </div> */}
         </Modal.Body>
       </Modal>
     </>

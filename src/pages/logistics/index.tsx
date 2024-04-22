@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { toast, ToastContainer } from "react-toastify";
 
 import { WebSocketContext } from "~/app/providers";
-import { DeliverySentModal } from "~/widgets";
+import { DeliverySentModal, UserInfo } from "~/widgets";
 import { apiInstance } from "~/shared/api";
 import { dateToString, useSocket } from "~/shared/lib";
 import { Preloader, Table } from "~/shared/ui";
@@ -100,10 +100,12 @@ export default function Logistics() {
     return [
       ...data.map((order: any) => [
         order.id,
+        <UserInfo id={order.id} user={order.owner} />,
         order.recipient_name,
         order.recipient_phone,
         order.recipient_address,
         order.item_id,
+        order.name_of_the_product,
         order.item_type === "printer" ? "3D" : "Ферма",
         dateToString(order.created_date),
         <DeliverySentModal
@@ -116,10 +118,12 @@ export default function Logistics() {
 
   const orderCols = [
     "ID доставки",
+    "Владелец",
     "Имя покупателя",
     "Номер телефона",
     "Адрес доставки",
-    "ID и название продукта",
+    "ID продукта",
+    "Название продукта",
     "Категория продукта",
     "Дата создания",
     "Отправлено",
