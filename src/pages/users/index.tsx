@@ -93,7 +93,7 @@ const UsersPage: FC = () => {
       Премиум: "PR",
     };
     let newData = allData.filter((obj: User) => {
-      if (!isNaN(Number(inputValue)) && inputValue != "") {
+      if (!isNaN(parseInt(inputValue)) && inputValue !== "") {
         return obj.id === Number(inputValue);
       }
       return obj.name.toLowerCase().includes(inputValue);
