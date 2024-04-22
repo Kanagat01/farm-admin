@@ -1,27 +1,21 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Modal } from "react-bootstrap";
-import {
-  User,
-  UserActivityHeaders,
-  UserHeaders,
-  getUserActivityData,
-} from "~/entities";
-import { apiInstance } from "~/shared/api";
+import { User, UserHeaders } from "~/entities";
 import { dateToString } from "~/shared/lib";
-import { Input, Table } from "~/shared/ui";
+import { Input } from "~/shared/ui";
 
 export function UserInfo({ id, user }: { id: number; user: User }) {
   const [showModal, setShowModal] = useState<Record<number, boolean>>({});
-  const [data, setData] = useState<any[][]>([]);
-  useEffect(() => {
-    apiInstance
-      .post("/api_admin/get_user_actions/", {
-        user_profile_id: user.id,
-      })
-      .then((response) => {
-        setData(getUserActivityData(response.data.message));
-      });
-  }, []);
+  // const [data, setData] = useState<any[][]>([]);
+  // useEffect(() => {
+  //   apiInstance
+  //     .post("/api_admin/get_user_actions/", {
+  //       user_profile_id: user.id,
+  //     })
+  //     .then((response) => {
+  //       setData(getUserActivityData(response.data.message));
+  //     });
+  // }, []);
   const changeModal = () => {
     setShowModal({ ...showModal, [id]: !showModal[id] });
   };
